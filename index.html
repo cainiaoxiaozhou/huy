@@ -6,7 +6,7 @@
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>授权管理后台</title>
+<title>后台</title>
 <link href="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.staticfile.org/bootstrap-select/1.13.10/css/bootstrap-select.min.css" rel="stylesheet">
 <link href="images/main.css" rel="stylesheet">
@@ -18,63 +18,69 @@
 </head>
 <body>
  
+ 
   <div class="intro" style="margin-top:0px;">
-  	 &nbsp;
-    <div class="col-md-4 col-centered tac"></div>
+
+
     <div class="container">
       <div class="row">
         <div class="col-md-3 col-sm-8 col-centered">
           <form method="post" id="register-form" autocomplete="off" action="#" class="nice-validator n-default" novalidate>
-            
-            <br>
-            <div class="form-group" style="display:none">
-              <input name="sqm" type="text" class="form-control" id="sqm" value="wch123" placeholder="请输入GM认证码" autocomplete="off">
-            </div>
+            &nbsp;
             <div class="form-group">
               <select id="qu" class="form-control" name="qu">
-                  <option value="0">请选择大区</option>
-					<option value="1" selected>测试一区</option>
-				
-              </select>
+			  <option value="0">请选择大区</option>
+			  <option value="1" selected>s1萨坦圣</option>
+			 
+			
+			 
+			  </select>
             </div>
 			<div class="form-group">
-              <!-- <input type="text" class="form-control" id="usr" name="sur" value="" placeholder="未绑定信息" readonly="readonly"  autocomplete="open"> -->
+			  <input type="text" class="form-control" id="usr" name="usr" value="" placeholder="未绑定信息" readonly="readonly" autocomplete="off">
             </div>
             <div class="form-group">
-              <select id="type" class="form-control" name="type">
-			   <option value="0" selected>请选择功能</option>
-			  <option value="7">充值游戏钻石</option>
-			  <option value="8">发送游戏邮件</option>
-			  <option value="10">发送指定星级伙伴</option>
+              <select id="gnxz" class="form-control" name="gnxz">
+			  <option value="0">请选择功能</option>
+			  <option value="1">充值钻石</option>
+			  <option value="3">发送物品</option>
+			  <option value="4">删除物品</option>
+			  <option value="6">自定义英雄等级</option>
+			  <option value="7">自定义符文</option>
 			  </select>
             </div>
 			
-			<div class="form-group" id='sninfo' style="display:none;">
-			
-			<input type="text" class="form-control" onKeyUp="value=value.replace(/^(0+)|[^\d]+/g,'')" id="cdkarg" name="cdkarg" placeholder="CDK的面值" autocomplete="off">
-			
-			<br>
-			<input type="text" class="form-control" onKeyUp="value=value.replace(/^(0+)|[^\d]+/g,'')" id="cdkcount" name="cdkcount" placeholder="要生成的CDK数量" autocomplete="off">
-			
-			
-			</div>
-			
-			
-			<div class="form-group" id='charge' style="display:none;">
-			<select id='isrmb' class="form-control">
-			<option value='1'>累计充值</option>
-		    <option value='0'>不累计充</option>
-			</select><br>
-			<input type="text" class="form-control" onKeyUp="value=value.replace(/^(0+)|[^\d]+/g,'')" id="chrnum" name="chrnum" placeholder="请输入充值点卷" autocomplete="off">
-			
-			</div>
-			
-            <div class="form-group" id='xgb' style="display:none;">
-              <input type="text" class="form-control" id="gb" name="gb" placeholder="请输入快乐币数量" autocomplete="off">
-            </div>
-            <div class="form-group" id='zpay' style="display:none;">
+            <div class="form-group" id='xpay' style="display:none;">
               <input type="text" class="form-control" onKeyUp="value=value.replace(/^(0+)|[^\d]+/g,'')" id="pay" name="pay" placeholder="输入额度(1-100000) 到账钻石X10倍" autocomplete="off">
             </div>
+			
+            <div id='xbao' style="display:none;">
+            <div class="form-group">
+			<div class="input-group">
+            <input type='text' class="form-control" value='' id='searchipts' placeholder='礼包搜索'>
+			<span class="input-group-btn"><button class="btn btn-info" type="button" id='searchl' >搜索</button></span>	
+			</div>
+            </div>
+			<div class="form-group">
+			<select id='bao' class="form-control"><option value='0'>请选择需要充值的礼包</option>
+            <option value="1">金币
+</option><option value="3">钻石
+</option><option value="5">冒险者经验
+</option><option value="22">英雄经验
+</option><option value="10">公会贡献
+</option><option value="10001">进阶石
+</option><option value="17009">原初结晶
+</option><option value="10095">天晶魔液
+</option><option value="10040">奥术之尘
+</option><option value="10450">符文精华
+</option><option value="72001">炼神石
+</option><option value="17011">元素之灵
+</option><option value="32">烈阳晶石
+</option><option value="10030">天界神石
+</option><option value="10091">英雄结晶
+</option><option value="31">家园币
+</option>            </select>
+            </div></div>
             <div id='xitem' style="display:none;">
             <div class="form-group">
 			<div class="input-group">
@@ -84,1890 +90,1232 @@
             </div>
 			<div class="form-group">
 			<select id='item' class="form-control"><option value='0'>请选择需要发送的道具</option>
-            <option value="89140501"> [极品]护佑套装随机部位
-</option><option value="89130501"> [极品]神行套装随机部位
-</option><option value="89120501"> [极品]回春套装随机部位
-</option><option value="89110501"> [极品]怒意套装随机部位
-</option><option value="89100501"> [极品]神勇套装随机部位
-</option><option value="89090501"> [极品]反伤套装随机部位
-</option><option value="89080501"> [极品]驱邪套装随机部位
-</option><option value="89070501"> [极品]斗将套装随机部位
-</option><option value="89060501"> [极品]破法套装随机部位
-</option><option value="89050501"> [极品]碎盾套装随机部位
-</option><option value="89040501"> [极品]妙手套装随机部位
-</option><option value="89030501"> [极品]攻击套装随机部位
-</option><option value="89020501"> [极品]暴击套装随机部位
-</option><option value="89010501"> [极品]防御套装随机部位
-</option><option value="89140301"> [极品]护佑套装随机部位
-</option><option value="89130301"> [极品]神行套装随机部位
-</option><option value="89120301"> [极品]回春套装随机部位
-</option><option value="89110301"> [极品]怒意套装随机部位
-</option><option value="89100301"> [极品]神勇套装随机部位
-</option><option value="89090301"> [极品]反伤套装随机部位
-</option><option value="89080301"> [极品]驱邪套装随机部位
-</option><option value="89070301"> [极品]斗将套装随机部位
-</option><option value="89060301"> [极品]破法套装随机部位
-</option><option value="89050301"> [极品]碎盾套装随机部位
-</option><option value="89040301"> [极品]妙手套装随机部位
-</option><option value="89030301"> [极品]攻击套装随机部位
-</option><option value="89020301"> [极品]暴击套装随机部位
-</option><option value="89010301"> [极品]防御套装随机部位
-</option><option value="99141004"> 10星护佑玉佩
-</option><option value="99140904"> 9星护佑玉佩
-</option><option value="99140804"> 8星护佑玉佩
-</option><option value="99140704"> 7星护佑玉佩
-</option><option value="99140604"> 6星护佑玉佩
-</option><option value="99140504"> 5星护佑玉佩
-</option><option value="99140404"> 4星护佑玉佩
-</option><option value="99140304"> 3星护佑玉佩
-</option><option value="99140204"> 2星护佑玉佩
-</option><option value="99140104"> 1星护佑玉佩
-</option><option value="99141003"> 10星护佑兵书
-</option><option value="99140903"> 9星护佑兵书
-</option><option value="99140803"> 8星护佑兵书
-</option><option value="99140703"> 7星护佑兵书
-</option><option value="99140603"> 6星护佑兵书
-</option><option value="99140503"> 5星护佑兵书
-</option><option value="99140403"> 4星护佑兵书
-</option><option value="99140303"> 3星护佑兵书
-</option><option value="99140203"> 2星护佑兵书
-</option><option value="99140103"> 1星护佑兵书
-</option><option value="99141002"> 10星护佑披风
-</option><option value="99140902"> 9星护佑披风
-</option><option value="99140802"> 8星护佑披风
-</option><option value="99140702"> 7星护佑披风
-</option><option value="99140602"> 6星护佑披风
-</option><option value="99140502"> 5星护佑披风
-</option><option value="99140402"> 4星护佑披风
-</option><option value="99140302"> 3星护佑披风
-</option><option value="99140202"> 2星护佑披风
-</option><option value="99140102"> 1星护佑披风
-</option><option value="99141001"> 10星护佑虎符
-</option><option value="99140901"> 9星护佑虎符
-</option><option value="99140801"> 8星护佑虎符
-</option><option value="99140701"> 7星护佑虎符
-</option><option value="99140601"> 6星护佑虎符
-</option><option value="99140501"> 5星护佑虎符
-</option><option value="99140401"> 4星护佑虎符
-</option><option value="99140301"> 3星护佑虎符
-</option><option value="99140201"> 2星护佑虎符
-</option><option value="99140101"> 1星护佑虎符
-</option><option value="99131004"> 10星神行玉佩
-</option><option value="99130904"> 9星神行玉佩
-</option><option value="99130804"> 8星神行玉佩
-</option><option value="99130704"> 7星神行玉佩
-</option><option value="99130604"> 6星神行玉佩
-</option><option value="99130504"> 5星神行玉佩
-</option><option value="99130404"> 4星神行玉佩
-</option><option value="99130304"> 3星神行玉佩
-</option><option value="99130204"> 2星神行玉佩
-</option><option value="99130104"> 1星神行玉佩
-</option><option value="99131003"> 10星神行兵书
-</option><option value="99130903"> 9星神行兵书
-</option><option value="99130803"> 8星神行兵书
-</option><option value="99130703"> 7星神行兵书
-</option><option value="99130603"> 6星神行兵书
-</option><option value="99130503"> 5星神行兵书
-</option><option value="99130403"> 4星神行兵书
-</option><option value="99130303"> 3星神行兵书
-</option><option value="99130203"> 2星神行兵书
-</option><option value="99130103"> 1星神行兵书
-</option><option value="99131002"> 10星神行披风
-</option><option value="99130902"> 9星神行披风
-</option><option value="99130802"> 8星神行披风
-</option><option value="99130702"> 7星神行披风
-</option><option value="99130602"> 6星神行披风
-</option><option value="99130502"> 5星神行披风
-</option><option value="99130402"> 4星神行披风
-</option><option value="99130302"> 3星神行披风
-</option><option value="99130202"> 2星神行披风
-</option><option value="99130102"> 1星神行披风
-</option><option value="99131001"> 10星神行虎符
-</option><option value="99130901"> 9星神行虎符
-</option><option value="99130801"> 8星神行虎符
-</option><option value="99130701"> 7星神行虎符
-</option><option value="99130601"> 6星神行虎符
-</option><option value="99130501"> 5星神行虎符
-</option><option value="99130401"> 4星神行虎符
-</option><option value="99130301"> 3星神行虎符
-</option><option value="99130201"> 2星神行虎符
-</option><option value="99130101"> 1星神行虎符
-</option><option value="99121004"> 10星回春玉佩
-</option><option value="99120904"> 9星回春玉佩
-</option><option value="99120804"> 8星回春玉佩
-</option><option value="99120704"> 7星回春玉佩
-</option><option value="99120604"> 6星回春玉佩
-</option><option value="99120504"> 5星回春玉佩
-</option><option value="99120404"> 4星回春玉佩
-</option><option value="99120304"> 3星回春玉佩
-</option><option value="99120204"> 2星回春玉佩
-</option><option value="99120104"> 1星回春玉佩
-</option><option value="99121003"> 10星回春兵书
-</option><option value="99120903"> 9星回春兵书
-</option><option value="99120803"> 8星回春兵书
-</option><option value="99120703"> 7星回春兵书
-</option><option value="99120603"> 6星回春兵书
-</option><option value="99120503"> 5星回春兵书
-</option><option value="99120403"> 4星回春兵书
-</option><option value="99120303"> 3星回春兵书
-</option><option value="99120203"> 2星回春兵书
-</option><option value="99120103"> 1星回春兵书
-</option><option value="99121002"> 10星回春披风
-</option><option value="99120902"> 9星回春披风
-</option><option value="99120802"> 8星回春披风
-</option><option value="99120702"> 7星回春披风
-</option><option value="99120602"> 6星回春披风
-</option><option value="99120502"> 5星回春披风
-</option><option value="99120402"> 4星回春披风
-</option><option value="99120302"> 3星回春披风
-</option><option value="99120202"> 2星回春披风
-</option><option value="99120102"> 1星回春披风
-</option><option value="99121001"> 10星回春虎符
-</option><option value="99120901"> 9星回春虎符
-</option><option value="99120801"> 8星回春虎符
-</option><option value="99120701"> 7星回春虎符
-</option><option value="99120601"> 6星回春虎符
-</option><option value="99120501"> 5星回春虎符
-</option><option value="99120401"> 4星回春虎符
-</option><option value="99120301"> 3星回春虎符
-</option><option value="99120201"> 2星回春虎符
-</option><option value="99120101"> 1星回春虎符
-</option><option value="99111004"> 10星怒意玉佩
-</option><option value="99110904"> 9星怒意玉佩
-</option><option value="99110804"> 8星怒意玉佩
-</option><option value="99110704"> 7星怒意玉佩
-</option><option value="99110604"> 6星怒意玉佩
-</option><option value="99110504"> 5星怒意玉佩
-</option><option value="99110404"> 4星怒意玉佩
-</option><option value="99110304"> 3星怒意玉佩
-</option><option value="99110204"> 2星怒意玉佩
-</option><option value="99110104"> 1星怒意玉佩
-</option><option value="99111003"> 10星怒意兵书
-</option><option value="99110903"> 9星怒意兵书
-</option><option value="99110803"> 8星怒意兵书
-</option><option value="99110703"> 7星怒意兵书
-</option><option value="99110603"> 6星怒意兵书
-</option><option value="99110503"> 5星怒意兵书
-</option><option value="99110403"> 4星怒意兵书
-</option><option value="99110303"> 3星怒意兵书
-</option><option value="99110203"> 2星怒意兵书
-</option><option value="99110103"> 1星怒意兵书
-</option><option value="99111002"> 10星怒意披风
-</option><option value="99110902"> 9星怒意披风
-</option><option value="99110802"> 8星怒意披风
-</option><option value="99110702"> 7星怒意披风
-</option><option value="99110602"> 6星怒意披风
-</option><option value="99110502"> 5星怒意披风
-</option><option value="99110402"> 4星怒意披风
-</option><option value="99110302"> 3星怒意披风
-</option><option value="99110202"> 2星怒意披风
-</option><option value="99110102"> 1星怒意披风
-</option><option value="99111001"> 10星怒意虎符
-</option><option value="99110901"> 9星怒意虎符
-</option><option value="99110801"> 8星怒意虎符
-</option><option value="99110701"> 7星怒意虎符
-</option><option value="99110601"> 6星怒意虎符
-</option><option value="99110501"> 5星怒意虎符
-</option><option value="99110401"> 4星怒意虎符
-</option><option value="99110301"> 3星怒意虎符
-</option><option value="99110201"> 2星怒意虎符
-</option><option value="99110101"> 1星怒意虎符
-</option><option value="99101004"> 10星神勇玉佩
-</option><option value="99100904"> 9星神勇玉佩
-</option><option value="99100804"> 8星神勇玉佩
-</option><option value="99100704"> 7星神勇玉佩
-</option><option value="99100604"> 6星神勇玉佩
-</option><option value="99100504"> 5星神勇玉佩
-</option><option value="99100404"> 4星神勇玉佩
-</option><option value="99100304"> 3星神勇玉佩
-</option><option value="99100204"> 2星神勇玉佩
-</option><option value="99100104"> 1星神勇玉佩
-</option><option value="99101003"> 10星神勇兵书
-</option><option value="99100903"> 9星神勇兵书
-</option><option value="99100803"> 8星神勇兵书
-</option><option value="99100703"> 7星神勇兵书
-</option><option value="99100603"> 6星神勇兵书
-</option><option value="99100503"> 5星神勇兵书
-</option><option value="99100403"> 4星神勇兵书
-</option><option value="99100303"> 3星神勇兵书
-</option><option value="99100203"> 2星神勇兵书
-</option><option value="99100103"> 1星神勇兵书
-</option><option value="99101002"> 10星神勇披风
-</option><option value="99100902"> 9星神勇披风
-</option><option value="99100802"> 8星神勇披风
-</option><option value="99100702"> 7星神勇披风
-</option><option value="99100602"> 6星神勇披风
-</option><option value="99100502"> 5星神勇披风
-</option><option value="99100402"> 4星神勇披风
-</option><option value="99100302"> 3星神勇披风
-</option><option value="99100202"> 2星神勇披风
-</option><option value="99100102"> 1星神勇披风
-</option><option value="99101001"> 10星神勇虎符
-</option><option value="99100901"> 9星神勇虎符
-</option><option value="99100801"> 8星神勇虎符
-</option><option value="99100701"> 7星神勇虎符
-</option><option value="99100601"> 6星神勇虎符
-</option><option value="99100501"> 5星神勇虎符
-</option><option value="99100401"> 4星神勇虎符
-</option><option value="99100301"> 3星神勇虎符
-</option><option value="99100201"> 2星神勇虎符
-</option><option value="99100101"> 1星神勇虎符
-</option><option value="99091004"> 10星反伤玉佩
-</option><option value="99090904"> 9星反伤玉佩
-</option><option value="99090804"> 8星反伤玉佩
-</option><option value="99090704"> 7星反伤玉佩
-</option><option value="99090604"> 6星反伤玉佩
-</option><option value="99090504"> 5星反伤玉佩
-</option><option value="99090404"> 4星反伤玉佩
-</option><option value="99090304"> 3星反伤玉佩
-</option><option value="99090204"> 2星反伤玉佩
-</option><option value="99090104"> 1星反伤玉佩
-</option><option value="99091003"> 10星反伤兵书
-</option><option value="99090903"> 9星反伤兵书
-</option><option value="99090803"> 8星反伤兵书
-</option><option value="99090703"> 7星反伤兵书
-</option><option value="99090603"> 6星反伤兵书
-</option><option value="99090503"> 5星反伤兵书
-</option><option value="99090403"> 4星反伤兵书
-</option><option value="99090303"> 3星反伤兵书
-</option><option value="99090203"> 2星反伤兵书
-</option><option value="99090103"> 1星反伤兵书
-</option><option value="99091002"> 10星反伤披风
-</option><option value="99090902"> 9星反伤披风
-</option><option value="99090802"> 8星反伤披风
-</option><option value="99090702"> 7星反伤披风
-</option><option value="99090602"> 6星反伤披风
-</option><option value="99090502"> 5星反伤披风
-</option><option value="99090402"> 4星反伤披风
-</option><option value="99090302"> 3星反伤披风
-</option><option value="99090202"> 2星反伤披风
-</option><option value="99090102"> 1星反伤披风
-</option><option value="99091001"> 10星反伤虎符
-</option><option value="99090901"> 9星反伤虎符
-</option><option value="99090801"> 8星反伤虎符
-</option><option value="99090701"> 7星反伤虎符
-</option><option value="99090601"> 6星反伤虎符
-</option><option value="99090501"> 5星反伤虎符
-</option><option value="99090401"> 4星反伤虎符
-</option><option value="99090301"> 3星反伤虎符
-</option><option value="99090201"> 2星反伤虎符
-</option><option value="99090101"> 1星反伤虎符
-</option><option value="99081004"> 10星驱邪玉佩
-</option><option value="99080904"> 9星驱邪玉佩
-</option><option value="99080804"> 8星驱邪玉佩
-</option><option value="99080704"> 7星驱邪玉佩
-</option><option value="99080604"> 6星驱邪玉佩
-</option><option value="99080504"> 5星驱邪玉佩
-</option><option value="99080404"> 4星驱邪玉佩
-</option><option value="99080304"> 3星驱邪玉佩
-</option><option value="99080204"> 2星驱邪玉佩
-</option><option value="99080104"> 1星驱邪玉佩
-</option><option value="99081003"> 10星驱邪兵书
-</option><option value="99080903"> 9星驱邪兵书
-</option><option value="99080803"> 8星驱邪兵书
-</option><option value="99080703"> 7星驱邪兵书
-</option><option value="99080603"> 6星驱邪兵书
-</option><option value="99080503"> 5星驱邪兵书
-</option><option value="99080403"> 4星驱邪兵书
-</option><option value="99080303"> 3星驱邪兵书
-</option><option value="99080203"> 2星驱邪兵书
-</option><option value="99080103"> 1星驱邪兵书
-</option><option value="99081002"> 10星驱邪披风
-</option><option value="99080902"> 9星驱邪披风
-</option><option value="99080802"> 8星驱邪披风
-</option><option value="99080702"> 7星驱邪披风
-</option><option value="99080602"> 6星驱邪披风
-</option><option value="99080502"> 5星驱邪披风
-</option><option value="99080402"> 4星驱邪披风
-</option><option value="99080302"> 3星驱邪披风
-</option><option value="99080202"> 2星驱邪披风
-</option><option value="99080102"> 1星驱邪披风
-</option><option value="99081001"> 10星驱邪虎符
-</option><option value="99080901"> 9星驱邪虎符
-</option><option value="99080801"> 8星驱邪虎符
-</option><option value="99080701"> 7星驱邪虎符
-</option><option value="99080601"> 6星驱邪虎符
-</option><option value="99080501"> 5星驱邪虎符
-</option><option value="99080401"> 4星驱邪虎符
-</option><option value="99080301"> 3星驱邪虎符
-</option><option value="99080201"> 2星驱邪虎符
-</option><option value="99080101"> 1星驱邪虎符
-</option><option value="99071004"> 10星斗将玉佩
-</option><option value="99070904"> 9星斗将玉佩
-</option><option value="99070804"> 8星斗将玉佩
-</option><option value="99070704"> 7星斗将玉佩
-</option><option value="99070604"> 6星斗将玉佩
-</option><option value="99070504"> 5星斗将玉佩
-</option><option value="99070404"> 4星斗将玉佩
-</option><option value="99070304"> 3星斗将玉佩
-</option><option value="99070204"> 2星斗将玉佩
-</option><option value="99070104"> 1星斗将玉佩
-</option><option value="99071003"> 10星斗将兵书
-</option><option value="99070903"> 9星斗将兵书
-</option><option value="99070803"> 8星斗将兵书
-</option><option value="99070703"> 7星斗将兵书
-</option><option value="99070603"> 6星斗将兵书
-</option><option value="99070503"> 5星斗将兵书
-</option><option value="99070403"> 4星斗将兵书
-</option><option value="99070303"> 3星斗将兵书
-</option><option value="99070203"> 2星斗将兵书
-</option><option value="99070103"> 1星斗将兵书
-</option><option value="99071002"> 10星斗将披风
-</option><option value="99070902"> 9星斗将披风
-</option><option value="99070802"> 8星斗将披风
-</option><option value="99070702"> 7星斗将披风
-</option><option value="99070602"> 6星斗将披风
-</option><option value="99070502"> 5星斗将披风
-</option><option value="99070402"> 4星斗将披风
-</option><option value="99070302"> 3星斗将披风
-</option><option value="99070202"> 2星斗将披风
-</option><option value="99070102"> 1星斗将披风
-</option><option value="99071001"> 10星斗将虎符
-</option><option value="99070901"> 9星斗将虎符
-</option><option value="99070801"> 8星斗将虎符
-</option><option value="99070701"> 7星斗将虎符
-</option><option value="99070601"> 6星斗将虎符
-</option><option value="99070501"> 5星斗将虎符
-</option><option value="99070401"> 4星斗将虎符
-</option><option value="99070301"> 3星斗将虎符
-</option><option value="99070201"> 2星斗将虎符
-</option><option value="99070101"> 1星斗将虎符
-</option><option value="99061004"> 10星破法玉佩
-</option><option value="99060904"> 9星破法玉佩
-</option><option value="99060804"> 8星破法玉佩
-</option><option value="99060704"> 7星破法玉佩
-</option><option value="99060604"> 6星破法玉佩
-</option><option value="99060504"> 5星破法玉佩
-</option><option value="99060404"> 4星破法玉佩
-</option><option value="99060304"> 3星破法玉佩
-</option><option value="99060204"> 2星破法玉佩
-</option><option value="99060104"> 1星破法玉佩
-</option><option value="99061003"> 10星破法兵书
-</option><option value="99060903"> 9星破法兵书
-</option><option value="99060803"> 8星破法兵书
-</option><option value="99060703"> 7星破法兵书
-</option><option value="99060603"> 6星破法兵书
-</option><option value="99060503"> 5星破法兵书
-</option><option value="99060403"> 4星破法兵书
-</option><option value="99060303"> 3星破法兵书
-</option><option value="99060203"> 2星破法兵书
-</option><option value="99060103"> 1星破法兵书
-</option><option value="99061002"> 10星破法披风
-</option><option value="99060902"> 9星破法披风
-</option><option value="99060802"> 8星破法披风
-</option><option value="99060702"> 7星破法披风
-</option><option value="99060602"> 6星破法披风
-</option><option value="99060502"> 5星破法披风
-</option><option value="99060402"> 4星破法披风
-</option><option value="99060302"> 3星破法披风
-</option><option value="99060202"> 2星破法披风
-</option><option value="99060102"> 1星破法披风
-</option><option value="99061001"> 10星破法虎符
-</option><option value="99060901"> 9星破法虎符
-</option><option value="99060801"> 8星破法虎符
-</option><option value="99060701"> 7星破法虎符
-</option><option value="99060601"> 6星破法虎符
-</option><option value="99060501"> 5星破法虎符
-</option><option value="99060401"> 4星破法虎符
-</option><option value="99060301"> 3星破法虎符
-</option><option value="99060201"> 2星破法虎符
-</option><option value="99060101"> 1星破法虎符
-</option><option value="99051004"> 10星碎盾玉佩
-</option><option value="99050904"> 9星碎盾玉佩
-</option><option value="99050804"> 8星碎盾玉佩
-</option><option value="99050704"> 7星碎盾玉佩
-</option><option value="99050604"> 6星碎盾玉佩
-</option><option value="99050504"> 5星碎盾玉佩
-</option><option value="99050404"> 4星碎盾玉佩
-</option><option value="99050304"> 3星碎盾玉佩
-</option><option value="99050204"> 2星碎盾玉佩
-</option><option value="99050104"> 1星碎盾玉佩
-</option><option value="99051003"> 10星碎盾兵书
-</option><option value="99050903"> 9星碎盾兵书
-</option><option value="99050803"> 8星碎盾兵书
-</option><option value="99050703"> 7星碎盾兵书
-</option><option value="99050603"> 6星碎盾兵书
-</option><option value="99050503"> 5星碎盾兵书
-</option><option value="99050403"> 4星碎盾兵书
-</option><option value="99050303"> 3星碎盾兵书
-</option><option value="99050203"> 2星碎盾兵书
-</option><option value="99050103"> 1星碎盾兵书
-</option><option value="99051002"> 10星碎盾披风
-</option><option value="99050902"> 9星碎盾披风
-</option><option value="99050802"> 8星碎盾披风
-</option><option value="99050702"> 7星碎盾披风
-</option><option value="99050602"> 6星碎盾披风
-</option><option value="99050502"> 5星碎盾披风
-</option><option value="99050402"> 4星碎盾披风
-</option><option value="99050302"> 3星碎盾披风
-</option><option value="99050202"> 2星碎盾披风
-</option><option value="99050102"> 1星碎盾披风
-</option><option value="99051001"> 10星碎盾虎符
-</option><option value="99050901"> 9星碎盾虎符
-</option><option value="99050801"> 8星碎盾虎符
-</option><option value="99050701"> 7星碎盾虎符
-</option><option value="99050601"> 6星碎盾虎符
-</option><option value="99050501"> 5星碎盾虎符
-</option><option value="99050401"> 4星碎盾虎符
-</option><option value="99050301"> 3星碎盾虎符
-</option><option value="99050201"> 2星碎盾虎符
-</option><option value="99050101"> 1星碎盾虎符
-</option><option value="99041004"> 10星妙手玉佩
-</option><option value="99040904"> 9星妙手玉佩
-</option><option value="99040804"> 8星妙手玉佩
-</option><option value="99040704"> 7星妙手玉佩
-</option><option value="99040604"> 6星妙手玉佩
-</option><option value="99040504"> 5星妙手玉佩
-</option><option value="99040404"> 4星妙手玉佩
-</option><option value="99040304"> 3星妙手玉佩
-</option><option value="99040204"> 2星妙手玉佩
-</option><option value="99040104"> 1星妙手玉佩
-</option><option value="99041003"> 10星妙手兵书
-</option><option value="99040903"> 9星妙手兵书
-</option><option value="99040803"> 8星妙手兵书
-</option><option value="99040703"> 7星妙手兵书
-</option><option value="99040603"> 6星妙手兵书
-</option><option value="99040503"> 5星妙手兵书
-</option><option value="99040403"> 4星妙手兵书
-</option><option value="99040303"> 3星妙手兵书
-</option><option value="99040203"> 2星妙手兵书
-</option><option value="99040103"> 1星妙手兵书
-</option><option value="99041002"> 10星妙手披风
-</option><option value="99040902"> 9星妙手披风
-</option><option value="99040802"> 8星妙手披风
-</option><option value="99040702"> 7星妙手披风
-</option><option value="99040602"> 6星妙手披风
-</option><option value="99040502"> 5星妙手披风
-</option><option value="99040402"> 4星妙手披风
-</option><option value="99040302"> 3星妙手披风
-</option><option value="99040202"> 2星妙手披风
-</option><option value="99040102"> 1星妙手披风
-</option><option value="99041001"> 10星妙手虎符
-</option><option value="99040901"> 9星妙手虎符
-</option><option value="99040801"> 8星妙手虎符
-</option><option value="99040701"> 7星妙手虎符
-</option><option value="99040601"> 6星妙手虎符
-</option><option value="99040501"> 5星妙手虎符
-</option><option value="99040401"> 4星妙手虎符
-</option><option value="99040301"> 3星妙手虎符
-</option><option value="99040201"> 2星妙手虎符
-</option><option value="99040101"> 1星妙手虎符
-</option><option value="99031004"> 10星攻击玉佩
-</option><option value="99030904"> 9星攻击玉佩
-</option><option value="99030804"> 8星攻击玉佩
-</option><option value="99030704"> 7星攻击玉佩
-</option><option value="99030604"> 6星攻击玉佩
-</option><option value="99030504"> 5星攻击玉佩
-</option><option value="99030404"> 4星攻击玉佩
-</option><option value="99030304"> 3星攻击玉佩
-</option><option value="99030204"> 2星攻击玉佩
-</option><option value="99030104"> 1星攻击玉佩
-</option><option value="99031003"> 10星攻击兵书
-</option><option value="99030903"> 9星攻击兵书
-</option><option value="99030803"> 8星攻击兵书
-</option><option value="99030703"> 7星攻击兵书
-</option><option value="99030603"> 6星攻击兵书
-</option><option value="99030503"> 5星攻击兵书
-</option><option value="99030403"> 4星攻击兵书
-</option><option value="99030303"> 3星攻击兵书
-</option><option value="99030203"> 2星攻击兵书
-</option><option value="99030103"> 1星攻击兵书
-</option><option value="99031002"> 10星攻击披风
-</option><option value="99030902"> 9星攻击披风
-</option><option value="99030802"> 8星攻击披风
-</option><option value="99030702"> 7星攻击披风
-</option><option value="99030602"> 6星攻击披风
-</option><option value="99030502"> 5星攻击披风
-</option><option value="99030402"> 4星攻击披风
-</option><option value="99030302"> 3星攻击披风
-</option><option value="99030202"> 2星攻击披风
-</option><option value="99030102"> 1星攻击披风
-</option><option value="99031001"> 10星攻击虎符
-</option><option value="99030901"> 9星攻击虎符
-</option><option value="99030801"> 8星攻击虎符
-</option><option value="99030701"> 7星攻击虎符
-</option><option value="99030601"> 6星攻击虎符
-</option><option value="99030501"> 5星攻击虎符
-</option><option value="99030401"> 4星攻击虎符
-</option><option value="99030301"> 3星攻击虎符
-</option><option value="99030201"> 2星攻击虎符
-</option><option value="99030101"> 1星攻击虎符
-</option><option value="99021004"> 10星暴击玉佩
-</option><option value="99020904"> 9星暴击玉佩
-</option><option value="99020804"> 8星暴击玉佩
-</option><option value="99020704"> 7星暴击玉佩
-</option><option value="99020604"> 6星暴击玉佩
-</option><option value="99020504"> 5星暴击玉佩
-</option><option value="99020404"> 4星暴击玉佩
-</option><option value="99020304"> 3星暴击玉佩
-</option><option value="99020204"> 2星暴击玉佩
-</option><option value="99020104"> 1星暴击玉佩
-</option><option value="99021003"> 10星暴击兵书
-</option><option value="99020903"> 9星暴击兵书
-</option><option value="99020803"> 8星暴击兵书
-</option><option value="99020703"> 7星暴击兵书
-</option><option value="99020603"> 6星暴击兵书
-</option><option value="99020503"> 5星暴击兵书
-</option><option value="99020403"> 4星暴击兵书
-</option><option value="99020303"> 3星暴击兵书
-</option><option value="99020203"> 2星暴击兵书
-</option><option value="99020103"> 1星暴击兵书
-</option><option value="99021002"> 10星暴击披风
-</option><option value="99020902"> 9星暴击披风
-</option><option value="99020802"> 8星暴击披风
-</option><option value="99020702"> 7星暴击披风
-</option><option value="99020602"> 6星暴击披风
-</option><option value="99020502"> 5星暴击披风
-</option><option value="99020402"> 4星暴击披风
-</option><option value="99020302"> 3星暴击披风
-</option><option value="99020202"> 2星暴击披风
-</option><option value="99020102"> 1星暴击披风
-</option><option value="99021001"> 10星暴击虎符
-</option><option value="99020901"> 9星暴击虎符
-</option><option value="99020801"> 8星暴击虎符
-</option><option value="99020701"> 7星暴击虎符
-</option><option value="99020601"> 6星暴击虎符
-</option><option value="99020501"> 5星暴击虎符
-</option><option value="99020401"> 4星暴击虎符
-</option><option value="99020301"> 3星暴击虎符
-</option><option value="99020201"> 2星暴击虎符
-</option><option value="99020101"> 1星暴击虎符
-</option><option value="99011004"> 10星防御玉佩
-</option><option value="99010904"> 9星防御玉佩
-</option><option value="99010804"> 8星防御玉佩
-</option><option value="99010704"> 7星防御玉佩
-</option><option value="99010604"> 6星防御玉佩
-</option><option value="99010504"> 5星防御玉佩
-</option><option value="99010404"> 4星防御玉佩
-</option><option value="99010304"> 3星防御玉佩
-</option><option value="99010204"> 2星防御玉佩
-</option><option value="99010104"> 1星防御玉佩
-</option><option value="99011003"> 10星防御兵书
-</option><option value="99010903"> 9星防御兵书
-</option><option value="99010803"> 8星防御兵书
-</option><option value="99010703"> 7星防御兵书
-</option><option value="99010603"> 6星防御兵书
-</option><option value="99010503"> 5星防御兵书
-</option><option value="99010403"> 4星防御兵书
-</option><option value="99010303"> 3星防御兵书
-</option><option value="99010203"> 2星防御兵书
-</option><option value="99010103"> 1星防御兵书
-</option><option value="99011002"> 10星防御披风
-</option><option value="99010902"> 9星防御披风
-</option><option value="99010802"> 8星防御披风
-</option><option value="99010702"> 7星防御披风
-</option><option value="99010602"> 6星防御披风
-</option><option value="99010502"> 5星防御披风
-</option><option value="99010402"> 4星防御披风
-</option><option value="99010302"> 3星防御披风
-</option><option value="99010202"> 2星防御披风
-</option><option value="99010102"> 1星防御披风
-</option><option value="99011001"> 10星防御虎符
-</option><option value="99010901"> 9星防御虎符
-</option><option value="99010801"> 8星防御虎符
-</option><option value="99010701"> 7星防御虎符
-</option><option value="99010601"> 6星防御虎符
-</option><option value="99010501"> 5星防御虎符
-</option><option value="99010401"> 4星防御虎符
-</option><option value="99010301"> 3星防御虎符
-</option><option value="99010201"> 2星防御虎符
-</option><option value="99010101"> 1星防御虎符
-</option><option value="99001"> 新春红包
-</option><option value="99000"> 投资计划
-</option><option value="91000"> 10星英魂
-</option><option value="90900"> 9星英魂
-</option><option value="90505"> 5星魔族英魂
-</option><option value="90504"> 5星神族英魂
-</option><option value="90503"> 5星蜀国英魂
-</option><option value="90502"> 5星魏国英魂
-</option><option value="90501"> 5星吴国英魂
-</option><option value="81004"> 巧克力
-</option><option value="81003"> 糖果
-</option><option value="81002"> 奶油
-</option><option value="81001"> 甜蜜积分币
-</option><option value="80401"> 新年关羽形象
-</option><option value="80352"> 烟花
-</option><option value="80351"> 贡品
-</option><option value="80304"> 瑞
-</option><option value="80303"> 献
-</option><option value="80302"> 虎
-</option><option value="80301"> 金
-</option><option value="80268"> 凤凰令
-</option><option value="80267"> 竞技作战心得
-</option><option value="80266"> 魔法之书
-</option><option value="80265"> 崛起功勋
-</option><option value="80264"> 春蕾芽枝
-</option><option value="80263"> 金锦鲤
-</option><option value="80262"> 雪花飞刃
-</option><option value="80261"> 终点
-</option><option value="80260"> 弗拉格
-</option><option value="80259"> 大boss出现了
-</option><option value="80258"> 天降红包
-</option><option value="80257"> 神秘事件
-</option><option value="80256"> 强者的对决
-</option><option value="80255"> 南瓜大礼包
-</option><option value="80254"> 啊，是陷阱！
-</option><option value="80253"> 血量提升！
-</option><option value="80252"> 攻击力提升！
-</option><option value="80251"> 魔女的药锅
-</option><option value="80250"> 这，就是希望么
-</option><option value="80249"> 吨吨吨伏特加
-</option><option value="80248"> 冲鸭！
-</option><option value="80247"> 魔法秘笈
-</option><option value="80246"> 南瓜机
-</option><option value="80245"> 奇境挑战卷
-</option><option value="80244"> 万圣糖果
-</option><option value="80243"> 南瓜头
-</option><option value="80240"> 合服宝箱
-</option><option value="80239"> 合服积分
-</option><option value="80238"> 礼花炮
-</option><option value="80237"> 流星弹
-</option><option value="80236"> 花火积分
-</option><option value="80235"> 秋日枫叶
-</option><option value="80234"> 最强君主认定
-</option><option value="80233"> 失落的准考证
-</option><option value="80232"> 满分试卷
-</option><option value="85002"> [周卡]龙魂玉周卡
-</option><option value="85001"> [周卡]元宝周卡
-</option><option value="80231"> 解锁额外经验包
-</option><option value="80230"> 写不完的作业本
-</option><option value="80229"> 绚蝶音符
-</option><option value="80228"> 试炼彩星
-</option><option value="80227"> 解锁额外经验包
-</option><option value="80226"> 沙滩贝壳
-</option><option value="80225"> 冒险经验
-</option><option value="80224"> 勇者经验
-</option><option value="80223"> 夏日积分
-</option><option value="80222"> 希望印记
-</option><option value="80221"> 活跃值
-</option><option value="80220"> 征战阅历
-</option><option value="80219"> 希望印记
-</option><option value="80218"> 征战阅历
-</option><option value="80217"> 希望印记
-</option><option value="80216"> 征战阅历
-</option><option value="80215"> 希望印记
-</option><option value="80214"> 希望印记
-</option><option value="80213"> 征战阅历
-</option><option value="80212"> 征战阅历
-</option><option value="80211"> 糯米粉
-</option><option value="80210"> 黑芝麻
-</option><option value="80209"> 特级糖粉
-</option><option value="80208"> 不可名状之物
-</option><option value="80207"> 神秘的元宵
-</option><option value="80206"> 发光的元宵
-</option><option value="80205"> 八宝元宵
-</option><option value="80204"> 丰登元宵
-</option><option value="80203"> 纳福元宵
-</option><option value="80202"> 欢庆元宵
-</option><option value="80201"> 元宵花灯
-</option><option value="80156"> 曙光之盾
-</option><option value="80155"> 烈焰之羽
-</option><option value="80154"> 莹蓝冰晶
-</option><option value="80153"> 暗黑玛瑙
-</option><option value="80152"> 曙光之盾
-</option><option value="80151"> 烈焰之羽
-</option><option value="80150"> 莹蓝冰晶
-</option><option value="80149"> 暗黑玛瑙
-</option><option value="80148"> 曙光之盾
-</option><option value="80147"> 烈焰之羽
-</option><option value="80146"> 莹蓝冰晶
-</option><option value="80145"> 暗黑玛瑙
-</option><option value="80144"> 曙光之盾
-</option><option value="80143"> 烈焰之羽
-</option><option value="80142"> 莹蓝冰晶
-</option><option value="80141"> 暗黑玛瑙
-</option><option value="80140"> 曙光之盾
-</option><option value="80139"> 烈焰之羽
-</option><option value="80138"> 莹蓝冰晶
-</option><option value="80137"> 暗黑玛瑙
-</option><option value="80136"> 曙光之盾
-</option><option value="80135"> 烈焰之羽
-</option><option value="80134"> 莹蓝冰晶
-</option><option value="80133"> 暗黑玛瑙
-</option><option value="80132"> 曙光之盾
-</option><option value="80131"> 烈焰之羽
-</option><option value="80130"> 莹蓝冰晶
-</option><option value="80129"> 暗黑玛瑙
-</option><option value="80128"> 曙光之盾
-</option><option value="80127"> 烈焰之羽
-</option><option value="80126"> 莹蓝冰晶
-</option><option value="80125"> 暗黑玛瑙
-</option><option value="80124"> 曙光之盾
-</option><option value="80123"> 烈焰之羽
-</option><option value="80122"> 莹蓝冰晶
-</option><option value="80121"> 暗黑玛瑙
-</option><option value="80120"> 荣耀币章
-</option><option value="80119"> 曙光之盾
-</option><option value="80118"> 烈焰之羽
-</option><option value="80117"> 莹蓝冰晶
-</option><option value="80116"> 暗黑玛瑙
-</option><option value="80115"> 曙光之盾
-</option><option value="80114"> 烈焰之羽
-</option><option value="80113"> 莹蓝冰晶
-</option><option value="80112"> 暗黑玛瑙
-</option><option value="80111"> 曙光之盾
-</option><option value="80110"> 烈焰之羽
-</option><option value="80109"> 莹蓝冰晶
-</option><option value="80108"> 破蕾桃枝
-</option><option value="80107"> 生命之苗
-</option><option value="80106"> 游园奖券
-</option><option value="80105"> 冥凤灾羽
-</option><option value="80104"> 铁精矿
-</option><option value="80103"> 异变龙鳞
-</option><option value="80102"> 阎浮青叶
-</option><option value="80101"> 王之玉玺
-</option><option value="72112"> 盘古斧
-</option><option value="72111"> 青釭剑
-</option><option value="72110"> 倚天剑
-</option><option value="72109"> 七星剑
-</option><option value="72108"> 神·周瑜之盾（弃用）
-</option><option value="72107"> 龙胆亮银枪
-</option><option value="72106"> 丈八蛇矛
-</option><option value="72105"> 缪斯竖琴（弃用）
-</option><option value="72104"> 青龙偃月刀
-</option><option value="72103"> 方天画戟
-</option><option value="72102"> 落日弓
-</option><option value="72101"> 盘古斧（弃用）
-</option><option value="60305"> 英魂礼包
-</option><option value="60302"> VIP节日专属礼包
-</option><option value="60301"> VIP专属礼包
-</option><option value="60207"> 魏国5星自选宝箱
-</option><option value="60206"> 蜀国5星自选宝箱
-</option><option value="60205"> 吴国5星自选宝箱
-</option><option value="60204"> 魏蜀吴5星材料自选
-</option><option value="60203"> 吴国输出自选礼包
-</option><option value="60202"> 魏蜀吴输出自选礼包
-</option><option value="60201"> 魏蜀吴方士自选礼包
-</option><option value="60134"> 合作至上头像框
-</option><option value="60133"> 卓尔不群头像框
-</option><option value="60132"> 不凡传说头像框
-</option><option value="60131"> 巅峰至尊头像框
-</option><option value="60120"> 冠世王者头像框
-</option><option value="60102"> V10专属头像框
-</option><option value="60101"> V5专属头像框
-</option><option value="60003"> 新年活动专属头像
-</option><option value="60002"> V7专属头像
-</option><option value="60001"> V4专属头像
-</option><option value="73004"> 蚩尤信物
-</option><option value="73003"> 万造苍玉
-</option><option value="73002"> 千炼镜钢
-</option><option value="73001"> 百锻坚铁
-</option><option value="72005"> 有翼虫
-</option><option value="72004"> 兽灵金丹
-</option><option value="72003"> 神兵宝石
-</option><option value="72002"> 神兵符石
-</option><option value="72001"> 精炼石
-</option><option value="55903"> 群山之巅
-</option><option value="55902"> 勇攀高峰
-</option><option value="55901"> 友谊与荣耀
-</option><option value="55809"> 金瑞贺新春
-</option><option value="55808"> 冒险嘉年华
-</option><option value="55807"> 奇境探险家
-</option><option value="55806"> 试炼之星
-</option><option value="55805"> 智慧之贤者
-</option><option value="55804"> 皇家骑士团
-</option><option value="55803"> 冒险的领航人
-</option><option value="55802"> 黄金的勇者
-</option><option value="55801"> 试炼之境
-</option><option value="55709"> 神力觉醒
-</option><option value="55708"> 智慧之神
-</option><option value="55707"> 神之恩宠
-</option><option value="55706"> 欧皇降临
-</option><option value="55705"> 欧气满满
-</option><option value="55704"> 谁与争锋
-</option><option value="55703"> 冠绝一时
-</option><option value="55702"> 初露锋芒
-</option><option value="55701"> 神明眷顾
-</option><option value="55604"> 九五至尊
-</option><option value="55603"> 王者之心
-</option><option value="55602"> 强者之证
-</option><option value="55601"> 赛季精英
-</option><option value="55502"> 试练·引领者
-</option><option value="55501"> 试练·突破者
-</option><option value="55433"> 众神之巅
-</option><option value="55432"> 巅峰荣耀·8强
-</option><option value="55431"> 巅峰荣耀·64强
-</option><option value="55423"> 勇冠神界
-</option><option value="55422"> 荣耀之冠·8强
-</option><option value="55421"> 荣耀之冠·64强
-</option><option value="55413"> 冠军之冕
-</option><option value="55412"> 群雄逐鹿·8强
-</option><option value="55411"> 群雄逐鹿·32强
-</option><option value="55403"> 大探险家
-</option><option value="55402"> 探险者
-</option><option value="55401"> 寻宝者
-</option><option value="55313"> 所向披靡
-</option><option value="55312"> 战无不胜
-</option><option value="55311"> 攻无不克
-</option><option value="55304"> 无尽·巅峰
-</option><option value="55303"> 无尽·高级
-</option><option value="55302"> 无尽·中级
-</option><option value="55301"> 无尽·初级
-</option><option value="55205"> 过关斩将·魔
-</option><option value="55204"> 过关斩将·神
-</option><option value="55203"> 过关斩将·蜀
-</option><option value="55202"> 过关斩将·魏
-</option><option value="55201"> 过关斩将·吴
-</option><option value="55185"> 过关斩将·征战
-</option><option value="55184"> 过关斩将·巅峰
-</option><option value="55183"> 过关斩将·引领
-</option><option value="55182"> 过关斩将·突破
-</option><option value="55181"> 过关斩将·探险
-</option><option value="55104"> 元素主宰
-</option><option value="55103"> 元素领主
-</option><option value="55102"> 元素掌控
-</option><option value="55101"> 元素之力
-</option><option value="51203"> 戮力同心
-</option><option value="51202"> 同舟共济
-</option><option value="51201"> 歃血为盟
-</option><option value="51103"> 乱世枭雄
-</option><option value="51102"> 群雄之巅
-</option><option value="51101"> 王者战神
-</option><option value="51003"> 至强霸主
-</option><option value="51002"> 尊贵王者
-</option><option value="51001"> 九五至尊
-</option><option value="50921"> 火凤燎原
-</option><option value="50920"> 踏雪花晨
-</option><option value="50919"> 最强土豪
-</option><option value="50918"> 2022
-</option><option value="50917"> 重逢之旅
-</option><option value="50916"> 号令天下
-</option><option value="50915"> 雪舞冬季
-</option><option value="50914"> 奇妙之夜
-</option><option value="50913"> 神壕登场
-</option><option value="50912"> 花火映秋
-</option><option value="50911"> 一等学霸
-</option><option value="50910"> 神奏之音
-</option><option value="50909"> 潮汐猎人
-</option><option value="50908"> 勇者归来
-</option><option value="50907"> 冒险勇士
-</option><option value="50906"> 冒险骑士团
-</option><option value="50905"> 荣耀之光
-</option><option value="50904"> 君临天下
-</option><option value="50903"> 缤纷夏日
-</option><option value="50902"> 心动闪烁
-</option><option value="50901"> 花灯福愿
-</option><option value="50803"> 名声鹊起
-</option><option value="50802"> 万众瞩目
-</option><option value="50801"> 独孤求败
-</option><option value="50703"> 铁血战士
-</option><option value="50702"> 百胜战将
-</option><option value="50701"> 无双战神
-</option><option value="50603"> 不败神话
-</option><option value="50602"> 战场霸主
-</option><option value="50601"> 战场勇者
-</option><option value="50502"> 黑暗世界（弃用）
-</option><option value="50501"> 冰天雪地（弃用）
-</option><option value="50403"> 初露锋芒（弃用）
-</option><option value="50402"> 不屈意志（弃用）
-</option><option value="50401"> 破军之巅（弃用）
-</option><option value="50305"> 闪烁之光
-</option><option value="50304"> 神之眷顾
-</option><option value="50303"> 最强幸运星
-</option><option value="50302"> 寻宝幸运星
-</option><option value="50301"> 冠军之心（弃用）
-</option><option value="50205"> 越战越勇（弃用）
-</option><option value="50204"> 突破天际（弃用）
-</option><option value="50203"> 一览无穷（弃用）
-</option><option value="50202"> 爬塔能手（弃用）
-</option><option value="50201"> 节节攀升（弃用）
-</option><option value="50200"> 爬塔新手（弃用）
-</option><option value="50117"> 最强土豪（弃用）
-</option><option value="50116"> 战力至上（弃用）
-</option><option value="50115"> 英雄无敌（弃用）
-</option><option value="50114"> 试炼之王（弃用）
-</option><option value="50113"> 观星大师（弃用）
-</option><option value="50112"> 圣器王者（弃用）
-</option><option value="50111"> 耀眼光芒（弃用）
-</option><option value="50108"> 寻宝专家（弃用）
-</option><option value="50107"> 翱游神界（弃用）
-</option><option value="50106"> 最强英雄（弃用）
-</option><option value="50105"> 星耀之灵（弃用）
-</option><option value="50104"> 地表最强（弃用）
-</option><option value="50103"> 竞技天王（弃用）
-</option><option value="50102"> 爬塔达人（弃用）
-</option><option value="50101"> 大探险家（弃用）
-</option><option value="50015"> 贵族气质
-</option><option value="50014"> 群雄英杰
-</option><option value="50013"> 超强统帅
-</option><option value="50012"> 至尊王侯
-</option><option value="50037"> 英灵武神
-</option><option value="50036"> 星光熠熠
-</option><option value="50035"> 猫咪物语
-</option><option value="50034"> 猫咪物语
-</option><option value="50033"> 玫瑰恋人
-</option><option value="50032"> 初春新芽
-</option><option value="50031"> 祥瑞贺岁
-</option><option value="50030"> 祥瑞送福
-</option><option value="50029"> 金鼠贺岁
-</option><option value="50028"> 岁初礼赞
-</option><option value="50027"> 巅峰勇者
-</option><option value="50026"> 巅峰斗者
-</option><option value="50025"> 巅峰王者
-</option><option value="50024"> 巅峰至尊
-</option><option value="50023"> 纯白雪舞
-</option><option value="50022"> 恶魔之息
-</option><option value="50021"> 万圣南瓜夜
-</option><option value="50020"> 秋日私语
-</option><option value="50019"> 指导员
-</option><option value="50018"> 被选中之人
-</option><option value="50017"> 深藏功与名
-</option><option value="50016"> 我的王之力
-</option><option value="50010"> 冠世王者
-</option><option value="50009"> 三好学生
-</option><option value="50008"> 音舞绚蝶
-</option><option value="50007"> 缤纷盛夏
-</option><option value="50006"> 逐浪之夏
-</option><option value="50005"> 英雄崛起
-</option><option value="50004"> 众星捧月
-</option><option value="50003"> 愈战愈勇
-</option><option value="50002"> 战无不胜
-</option><option value="50001"> 至尊擂主
-</option><option value="50000"> 贵族气质
-</option><option value="39197"> 阎浮秘藏·天壤布雨
-</option><option value="39196"> 专精材料天鼎
-</option><option value="39195"> 专精材料地鼎
-</option><option value="39194"> 专精材料御鼎
-</option><option value="39192"> 端午粽
-</option><option value="39191"> 阎浮秘藏·黑莲河图
-</option><option value="39190"> 天选·无双飞将
-</option><option value="39189"> 异兽龙珠自选卡
-</option><option value="39188"> 阎浮秘藏·地遁天龙
-</option><option value="39187"> 池中莲
-</option><option value="39186"> 神魔演武装扮·至臻
-</option><option value="39185"> 三国演武装扮·精选
-</option><option value="39184"> 阎浮秘藏·先天至宝
-</option><option value="39183"> 散落秘藏·天甲
-</option><option value="39182"> 散落秘藏·地甲
-</option><option value="39181"> 阎浮秘藏·封神传说
-</option><option value="39180"> 阎浮秘藏·天甲
-</option><option value="39179"> 阎浮秘藏·地甲
-</option><option value="39178"> 阎浮秘藏·玄甲
-</option><option value="39177"> 阎浮秘藏·黄甲
-</option><option value="39176"> 天魔缭乱自选卡
-</option><option value="39175"> 神耀辉光自选卡
-</option><option value="39174"> 大碗元宵
-</option><option value="39173"> 小碗元宵
-</option><option value="39172"> 节庆精英自选卡
-</option><option value="39171"> 军备支援箱
-</option><option value="39170"> 三国自选碎片
-</option><option value="39169"> 神魔乱舞自选卡
-</option><option value="39168"> 三国演武自选卡
-</option><option value="39167"> 全阵营碎片自选礼包
-</option><option value="39166"> 火灵礼盒
-</option><option value="39165"> 限定精英自选卡
-</option><option value="39164"> 魏蜀吴碎片自选宝箱
-</option><option value="39163"> 欧皇宝箱
-</option><option value="39162"> 精英召唤自选卡
-</option><option value="39161"> 精英自选卡
-</option><option value="39160"> 冒险礼盒
-</option><option value="39159"> 极品5星神装自选箱
-</option><option value="39158"> 自选信物
-</option><option value="39157"> 全阵营武将碎片自选宝箱
-</option><option value="39156"> 极品5星护佑自选神装
-</option><option value="39155"> 极品5星神行自选神装
-</option><option value="39154"> 极品5星回春自选神装
-</option><option value="39153"> 极品5星怒意自选神装
-</option><option value="39152"> 极品5星神勇自选神装
-</option><option value="39151"> 极品5星反伤自选神装
-</option><option value="39150"> 极品5星驱邪自选神装
-</option><option value="39149"> 极品5星斗将自选神装
-</option><option value="39148"> 极品5星破法自选神装
-</option><option value="39147"> 极品5星碎盾自选神装
-</option><option value="39146"> 极品5星妙手自选神装
-</option><option value="39145"> 极品5星攻击自选神装
-</option><option value="39144"> 极品5星暴击自选神装
-</option><option value="39143"> 极品5星防御自选神装
-</option><option value="39142"> 极品4星护佑自选神装
-</option><option value="39141"> 极品4星神行自选神装
-</option><option value="39140"> 极品4星回春自选神装
-</option><option value="39139"> 极品4星怒意自选神装
-</option><option value="39138"> 极品4星神勇自选神装
-</option><option value="39137"> 极品4星反伤自选神装
-</option><option value="39136"> 极品4星驱邪自选神装
-</option><option value="39135"> 极品4星斗将自选神装
-</option><option value="39134"> 极品4星破法自选神装
-</option><option value="39133"> 极品4星碎盾自选神装
-</option><option value="39132"> 极品4星妙手自选神装
-</option><option value="39131"> 极品4星攻击自选神装
-</option><option value="39130"> 极品4星暴击自选神装
-</option><option value="39129"> 极品4星防御自选神装
-</option><option value="39128"> 极品3星护佑自选神装
-</option><option value="39127"> 极品3星神行自选神装
-</option><option value="39126"> 极品3星回春自选神装
-</option><option value="39125"> 极品3星怒意自选神装
-</option><option value="39124"> 极品3星神勇自选神装
-</option><option value="39123"> 极品3星反伤自选神装
-</option><option value="39122"> 极品3星驱邪自选神装
-</option><option value="39121"> 极品3星斗将自选神装
-</option><option value="39120"> 极品3星破法自选神装
-</option><option value="39119"> 极品3星碎盾自选神装
-</option><option value="39118"> 极品3星妙手自选神装
-</option><option value="39117"> 极品3星攻击自选神装
-</option><option value="39116"> 极品3星暴击自选神装
-</option><option value="39115"> 极品3星防御自选神装
-</option><option value="39114"> 极品2星护佑自选神装
-</option><option value="39113"> 极品2星神行自选神装
-</option><option value="39112"> 极品2星回春自选神装
-</option><option value="39111"> 极品2星怒意自选神装
-</option><option value="39110"> 极品2星神勇自选神装
-</option><option value="39109"> 极品2星反伤自选神装
-</option><option value="39108"> 极品2星驱邪自选神装
-</option><option value="39107"> 极品2星斗将自选神装
-</option><option value="39106"> 极品2星破法自选神装
-</option><option value="39105"> 极品2星碎盾自选神装
-</option><option value="39104"> 极品2星妙手自选神装
-</option><option value="39103"> 极品2星攻击自选神装
-</option><option value="39102"> 极品2星暴击自选神装
-</option><option value="39101"> 极品2星防御自选神装
-</option><option value="39100"> 橙色4星装备自选箱
-</option><option value="39099"> 红色1星装备自选箱
-</option><option value="39098"> 红色2星装备自选箱
-</option><option value="39097"> 红色3星装备自选箱
-</option><option value="39096"> 红色4星装备自选箱
-</option><option value="39095"> 红色5星装备自选箱
-</option><option value="39094"> 精英自选宝箱
-</option><option value="39093"> 精英召唤自选奖励
-</option><option value="39092"> 白色情人节礼盒
-</option><option value="39091"> 森林宝盒
-</option><option value="39090"> 精英自选礼盒
-</option><option value="39089"> 每日首充尊享礼包
-</option><option value="39088"> 每日首充专属礼包
-</option><option value="39087"> 每日首充特级礼包
-</option><option value="39086"> 每日首充高级礼包
-</option><option value="39085"> 每日首充精英礼包
-</option><option value="39084"> 每日首充幸运礼包
-</option><option value="39083"> 每日首充特惠礼包
-</option><option value="39082"> 稀有符石自选礼包
-</option><option value="39081"> 材料自选礼包
-</option><option value="39080"> 珍稀宝盒
-</option><option value="39079"> 材料自选福袋
-</option><option value="39078"> 皮肤自选礼盒
-</option><option value="39077"> 甜蜜礼盒
-</option><option value="39076"> 精英碎片宝盒
-</option><option value="39075"> 春节礼包
-</option><option value="39074"> 精英碎片礼盒
-</option><option value="39073"> 幸运碎片礼盒
-</option><option value="39072"> 新春福袋
-</option><option value="39071"> 新春宝箱
-</option><option value="39070"> 天使礼盒
-</option><option value="39069"> 新春红包
-</option><option value="39068"> 恭贺新禧VIP礼盒
-</option><option value="39067"> 龙珠之魂
-</option><option value="39066"> 新年礼盒
-</option><option value="39065"> 岁初礼盒
-</option><option value="39064"> 圣诞礼盒
-</option><option value="39062"> 欧皇宝盒
-</option><option value="39063"> 幸运宝袋
-</option><option value="39061"> 嘉年华蛋糕
-</option><option value="39060"> 武将祈愿自选礼盒
-</option><option value="39059"> 回归福袋
-</option><option value="39058"> 极品五星神装自选礼包
-</option><option value="39057"> 感恩宴礼
-</option><option value="39056"> 橙色龙珠自选礼盒
-</option><option value="39055"> 守护之礼
-</option><option value="39054"> 高级召唤礼包
-</option><option value="39053"> 精英召唤礼包
-</option><option value="39052"> 百万铜钱礼盒
-</option><option value="39051"> 龙珠扭蛋礼包
-</option><option value="39050"> 小鬼南瓜礼包
-</option><option value="39049"> 幸运元宝福袋
-</option><option value="39048"> 月神礼盒
-</option><option value="39047"> 随机符石礼包
-</option><option value="39046"> 绝黯之礼
-</option><option value="39045"> 双蛋黄莲蓉月饼
-</option><option value="39044"> 玉兔宝盒
-</option><option value="39043"> 三昧真火礼包
-</option><option value="39042"> 七夕臻礼
-</option><option value="39041"> 天籁之音
-</option><option value="39040"> 魏蜀吴武将自选礼盒
-</option><option value="39039"> 强力武将自选礼盒
-</option><option value="39038"> 庆典礼盒
-</option><option value="39037"> 幸运精英宝盒
-</option><option value="39036"> 松果宝盒
-</option><option value="39035"> 5星碎片礼盒
-</option><option value="39034"> 粽夏之礼
-</option><option value="39033"> 夏日皮肤礼包
-</option><option value="39032"> 巨镰之礼
-</option><option value="39031"> 金蛋好礼
-</option><option value="39030"> 魔狼宝藏
-</option><option value="39029"> 盛夏之约礼包
-</option><option value="39028"> 清凉一夏礼包
-</option><option value="39027"> 精英自选礼
-</option><option value="39523"> 极品5星神装自选礼包
-</option><option value="39522"> 极品3星神装自选礼包
-</option><option value="39519"> 3星极品护佑套
-</option><option value="39518"> 3星极品神行套
-</option><option value="39517"> 3星新神装自选礼盒
-</option><option value="39516"> 6星极品妙手套
-</option><option value="39515"> 6星极品攻击套
-</option><option value="39514"> 6星极品暴击套
-</option><option value="39513"> 6星极品套装自选礼盒
-</option><option value="39512"> 5星极品妙手套
-</option><option value="39511"> 5星极品攻击套
-</option><option value="39510"> 5星极品暴击套
-</option><option value="39509"> 5星极品套装自选礼盒
-</option><option value="39508"> 4星极品妙手套
-</option><option value="39507"> 4星极品攻击套
-</option><option value="39506"> 4星极品暴击套
-</option><option value="39505"> 4星极品套装自选礼盒
-</option><option value="39504"> 3星极品妙手套
-</option><option value="39503"> 3星极品攻击套
-</option><option value="39502"> 3星极品暴击套
-</option><option value="39501"> 3星极品套装自选礼盒
-</option><option value="39500"> 2星极品妙手套
-</option><option value="39499"> 2星极品攻击套
-</option><option value="39498"> 2星极品暴击套
-</option><option value="39497"> 2星极品套装自选礼盒
-</option><option value="39496"> 1星极品妙手套
-</option><option value="39495"> 1星极品攻击套
-</option><option value="39494"> 1星极品暴击套
-</option><option value="39493"> 1星极品套装自选礼盒
-</option><option value="39025"> 2星极品妙手套
-</option><option value="39024"> 2星极品攻击套
-</option><option value="39023"> 2星极品暴击套
-</option><option value="39022"> 2星极品套装礼盒
-</option><option value="39021"> 先知珍宝福袋
-</option><option value="39020"> 圣光之心
-</option><option value="39019"> 幸运福蛋
-</option><option value="39018"> 春日暖心福利
-</option><option value="39017"> 春日暖阳礼包
-</option><option value="39016"> 春日元宝宝藏
-</option><option value="39015"> 春日元宝补给箱
-</option><option value="39014"> 春日元宝礼盒
-</option><option value="39013"> 春日元宝福袋
-</option><option value="39012"> 星辰钥匙福袋
-</option><option value="39011"> 限定召唤福袋
-</option><option value="39010"> 圣物灵玉随机礼包
-</option><option value="39009"> 尊享自选材料包
-</option><option value="39008"> 豪华自选材料包
-</option><option value="39007"> 寻宝达人福袋
-</option><option value="39006"> 云台拜将福袋
-</option><option value="39005"> 魏国武将碎片福袋
-</option><option value="39004"> 吴国武将碎片福袋
-</option><option value="39003"> 蜀国武将碎片福袋
-</option><option value="39002"> 武将碎片福袋
-</option><option value="39001"> 幸运召唤福袋
-</option><option value="39000"> 幸运宝盒
-</option><option value="38101"> 3星橙装礼包
-</option><option value="37012"> 哨子
-</option><option value="37011"> 玫瑰之钥
-</option><option value="37010"> 中国结
-</option><option value="37009"> 暗影之石
-</option><option value="37008"> 松果币
-</option><option value="37007"> 夺宝积分
-</option><option value="37006"> 夺宝币
-</option><option value="37005"> 时光璃华
-</option><option value="37004"> 小金锤
-</option><option value="37003"> 星辰钥匙
-</option><option value="38042"> 高级夺宝礼包
-</option><option value="38041"> 幸运夺宝礼包
-</option><option value="37002"> 高级夺宝券
-</option><option value="37001"> 夺宝券
-</option><option value="36003"> 公会战安慰宝箱（弃用）
-</option><option value="36002"> 公会战胜利宝箱（弃用）
-</option><option value="36001"> 公会战战绩宝箱（弃用）
-</option><option value="33002"> 众神战场希望礼包（弃用）
-</option><option value="33001"> 众神战场和平礼包（弃用）
-</option><option value="33000"> 众神战场胜利礼包（弃用）
-</option><option value="30351"> 试炼王者礼包（弃用）（弃用）
-</option><option value="30350"> 试炼勇者礼包（弃用）（弃用）
-</option><option value="30057"> 龙珠鉴定特权
-</option><option value="30056"> 赤壁挑战特权
-</option><option value="30055"> 剿匪豪华特权
-</option><option value="30054"> 剿匪高级特权
-</option><option value="30053"> 快速作战特权
-</option><option value="38040"> 剿匪豪华特权礼
-</option><option value="38030"> 剿匪高级特权礼
-</option><option value="30052"> 极品橙装蓝钻包
-</option><option value="30051"> 绝版头像蓝钻包
-</option><option value="30050"> 武将升星红钻包
-</option><option value="38093"> 珍稀橙装套
-</option><option value="38092"> 随机4星橙装礼包
-</option><option value="38091"> 随机3星橙装礼包
-</option><option value="38081"> 随机2星橙装礼包
-</option><option value="38080"> 随机橙装礼包
-</option><option value="38071"> 随机3星红装礼包
-</option><option value="38061"> 随机2星红装礼包
-</option><option value="38051"> 随机红装礼包
-</option><option value="30006"> 精炼石礼包
-</option><option value="22007"> 神·甄姬幻神卡
-</option><option value="22006"> 阿努比斯幻神卡
-</option><option value="22005"> 炎魔之王幻神卡
-</option><option value="22004"> 伊西斯幻神卡
-</option><option value="22003"> 魅魔女王幻神卡
-</option><option value="22002"> 死亡骑士幻神卡
-</option><option value="22001"> 赵云幻神卡
-</option><option value="17211"> 圣洁信物
-</option><option value="17210"> 大地信物
-</option><option value="17205"> 圣洁信物(旧)
-</option><option value="17204"> 大地信物(旧)
-</option><option value="17203"> 烈阳信物(旧)
-</option><option value="17202"> 智慧信物(旧)
-</option><option value="17201"> 战神信物(旧)
-</option><option value="17193"> 强力神装
-</option><option value="17192"> 暴击神装
-</option><option value="17191"> 防御神装
-</option><option value="17102"> 天界神石[废弃]
-</option><option value="17101"> 神装碎片[旧]
-</option><option value="17015"> 深渊邪眼（不用）
-</option><option value="17014"> 光辉印章（不用）
-</option><option value="17013"> 风之灵石（不用）
-</option><option value="17012"> 地心熔岩（不用）
-</option><option value="17011"> 圣器之魂
-</option><option value="17009"> 原初灵玉
-</option><option value="17008"> 混沌灵玉
-</option><option value="17005"> 刑天灵玉
-</option><option value="17004"> 东皇灵玉
-</option><option value="17003"> 女娲灵玉
-</option><option value="17002"> 轩辕灵玉
-</option><option value="17001"> 伏羲灵玉
-</option><option value="16202"> 自选觉醒符石礼包
-</option><option value="16201"> 随机觉醒符石
-</option><option value="16108"> 急救符石
-</option><option value="16107"> 灵感符石
-</option><option value="16106"> 庇护符石
-</option><option value="16105"> 信仰符石
-</option><option value="16104"> 制裁符石
-</option><option value="16103"> 灵巧符石
-</option><option value="16102"> 蓄力符石
-</option><option value="16101"> 破裂符石
-</option><option value="16047"> 贪婪符石
-</option><option value="16046"> 驱灵符石
-</option><option value="16045"> 圣灵符石
-</option><option value="16044"> 神赦符石
-</option><option value="16043"> 波动符石
-</option><option value="16042"> 专注符石
-</option><option value="16041"> 英勇符石
-</option><option value="16040"> 反伤符石
-</option><option value="16039"> 清心符石
-</option><option value="16038"> 护盾符石
-</option><option value="16037"> 神体符石
-</option><option value="16036"> 吸取符石
-</option><option value="16035"> 物连符石
-</option><option value="16034"> 免伤符石
-</option><option value="16033"> 法连符石
-</option><option value="16032"> 控制符石
-</option><option value="16031"> 穿透符石
-</option><option value="16030"> 迟缓符石
-</option><option value="16029"> 生机符石
-</option><option value="16028"> 铁甲符石
-</option><option value="16027"> 魔免符石
-</option><option value="16026"> 抗暴符石
-</option><option value="16025"> 神佑符石
-</option><option value="16024"> 保命符石
-</option><option value="16023"> 再生符石
-</option><option value="16022"> 抗控符石
-</option><option value="16021"> 净化符石
-</option><option value="16020"> 精准符石
-</option><option value="16019"> 镇压符石
-</option><option value="16018"> 闪避符石
-</option><option value="16017"> 荣光符石
-</option><option value="16016"> 减速符石
-</option><option value="16015"> 挑衅符石
-</option><option value="16014"> 冲击符石
-</option><option value="16013"> 驱散符石
-</option><option value="16012"> 灭魂符石
-</option><option value="16011"> 降疗符石
-</option><option value="16010"> 降临符石
-</option><option value="16009"> 回音符石
-</option><option value="16008"> 迅捷符石
-</option><option value="16007"> 战意符石
-</option><option value="16006"> 狂暴符石
-</option><option value="16005"> 暴怒符石
-</option><option value="16004"> 暴追符石
-</option><option value="16003"> 追击符石
-</option><option value="16002"> 神力符石
-</option><option value="16001"> 魔力符石
-</option><option value="13100"> 1000VIP经验（弃用）
-</option><option value="13007"> 王者月卡激活（弃用）
-</option><option value="13006"> 贵族月卡激活（弃用）
-</option><option value="13005"> 6元充值卡（弃用）
-</option><option value="13004"> 30元充值卡（弃用）
-</option><option value="13003"> 98元充值卡（弃用）
-</option><option value="13002"> 198元充值卡（弃用）
-</option><option value="13001"> 328元充值卡（弃用）
-</option><option value="13000"> 648元充值卡（弃用）
-</option><option value="10703"> 奥术法杖
-</option><option value="10702"> 星辰锤
-</option><option value="10701"> 小木槌
-</option><option value="10603"> 史诗源石
-</option><option value="10602"> 极品源石
-</option><option value="10601"> 优质源石
-</option><option value="14002"> 轮回神石
-</option><option value="14001"> 招贤令
-</option><option value="14000"> 神将之灵
-</option><option value="10490"> 高级好运宝珠
-</option><option value="10500"> 祝福值
-</option><option value="10480"> 原能碎片
-</option><option value="10470"> 好运宝珠
-</option><option value="10460"> 觉醒石
-</option><option value="10455"> 混沌龙魂
-</option><option value="10454"> 紫薇龙魂
-</option><option value="10453"> 日照龙魂
-</option><option value="10452"> 月光龙魂
-</option><option value="10451"> 星辰龙魂
-</option><option value="10450"> 龙魂玉
-</option><option value="10456"> 无双龙魂
-</option><option value="10445"> 龙魂·魔之灵
-</option><option value="10444"> 龙魂·魔之灵
-</option><option value="10443"> 龙魂·魔之灵
-</option><option value="10442"> 龙魂·魔之灵
-</option><option value="10441"> 龙魂·魔之灵
-</option><option value="10431"> 神耀重铸石
-</option><option value="10430"> 魔灵重铸石
-</option><option value="10427"> 龙魂·神之耀
-</option><option value="10426"> 龙魂·神之耀
-</option><option value="10425"> 龙魂·神之耀
-</option><option value="10424"> 龙魂·神之耀
-</option><option value="10423"> 龙魂·神之耀
-</option><option value="10422"> 龙魂·神之耀
-</option><option value="10421"> 龙魂·神之耀
-</option><option value="10420"> 神器·圣灵法戒
-</option><option value="10412"> 橙色万能碎片
-</option><option value="10411"> 紫色万能碎片
-</option><option value="10410"> 蓝色万能碎片
-</option><option value="10418"> 时光漂流瓶
-</option><option value="10417"> 回归红包
-</option><option value="10416"> 武将祈愿券
-</option><option value="10415"> 龙珠召唤令
-</option><option value="10409"> 幸运冒险召唤卷
-</option><option value="10408"> 精英招募令
-</option><option value="10407"> 限定招募令
-</option><option value="10403"> 高级招募令
-</option><option value="10401"> 普通招募令
-</option><option value="10301"> 冠军之心
-</option><option value="10202"> 寻宝券（弃用）
-</option><option value="10201"> 声望600
-</option><option value="10200"> 声望300
-</option><option value="10152"> 秘宝钥匙
-</option><option value="10103"> 比武令
-</option><option value="10101"> 神秘商城刷新券(弃用）
-</option><option value="10096"> 天罡遗物
-</option><option value="10095"> 天罡精华
-</option><option value="10090"> 天启星纹石
-</option><option value="10091"> 天启星纹石（测试）
-</option><option value="10803"> 至尊元宝红包令
-</option><option value="10802"> 豪华元宝红包令
-</option><option value="10801"> 高端大气红包令
-</option><option value="10800"> 铜钱红包令
-</option><option value="10042"> 获取途径用
-</option><option value="10041"> 神龙精魄
-</option><option value="10040"> 龙之精华
-</option><option value="10034"> 七星神石
-</option><option value="10033"> 家园钥匙
-</option><option value="10030"> 乌金石
-</option><option value="10020"> 全盟增幅卷轴
-</option><option value="10010"> 魂石
-</option><option value="10006"> 天赋秘典
-</option><option value="10005"> 英魂之心
-</option><option value="10004"> 快速作战券
-</option><option value="10003"> 副本扫荡券
-</option><option value="10002"> 剿匪刷新券
-</option><option value="10001"> 将星石
-</option><option value="39"> 星命卡牌
-</option><option value="38"> 巅峰币
-</option><option value="37"> 巅峰竞猜币（不存在）
-</option><option value="36"> 勇者凭证
-</option><option value="35"> 圣羽
-</option><option value="34"> 九州币
-</option><option value="33"> 高级竞猜币（不存在）
-</option><option value="32"> 神兵之魄
-</option><option value="31"> 家园币
-</option><option value="30"> 勇者印记
-</option><option value="29"> 皮肤碎片
-</option><option value="28"> 神装碎片
-</option><option value="27"> 荣誉徽章
-</option><option value="26"> 魂力值（不存在）
-</option><option value="25"> 征战勋章
-</option><option value="24"> 招贤积分
-</option><option value="23"> 招募积分
-</option><option value="22"> 武将经验
-</option><option value="21"> 天梯积分
-</option><option value="20"> 冠军积分
-</option><option value="19"> 竞猜币（不存在）
-</option><option value="18"> 夺宝积分
-</option><option value="17"> 星魂结晶（弃用）
-</option><option value="16"> 联盟经验（不存在）
-</option><option value="15"> 蓝（红）钻（弃用）
-</option><option value="14"> 友情点
-</option><option value="13"> 橙装碎片（弃用）
-</option><option value="12"> 成就点
-</option><option value="11"> 武将精魄
-</option><option value="10"> 联盟贡献
-</option><option value="9"> 活跃度
-</option><option value="8"> 声望
-</option><option value="7"> 情报
-</option><option value="6"> 英雄经验（弃用）
-</option><option value="5"> 君主经验
-</option><option value="4"> 红钻（弃用）
-</option><option value="3"> 元宝
-</option><option value="2"> 弃用
-</option><option value="1"> 铜钱
-</option><option value="24310"> 五星黄盖
-</option><option value="26314"> 五星蒋琬
-</option><option value="26313"> 五星马良
-</option><option value="26312"> 五星严颜
-</option><option value="25314"> 五星陈群
-</option><option value="24314"> 五星诸葛恪
-</option><option value="24312"> 五星顾雍
-</option><option value="27304"> 五星神·张角
-</option><option value="27306"> 五星神·于吉
-</option><option value="26305"> 五星魏延
-</option><option value="10429"> 魔灵符文碎片
-</option><option value="10428"> 神耀符文碎片
-</option><option value="29999"> 积分召唤图标
-</option><option value="29962"> 5星精英武将碎片
-</option><option value="29961"> 5星精英武将碎片
-</option><option value="29960"> 武将材料来源
-</option><option value="29906"> 5星神魔碎片
-</option><option value="29905"> 5星随机碎片
-</option><option value="29904"> 4星随机碎片
-</option><option value="29903"> 3星随机碎片
-</option><option value="29505"> 5星魔族碎片
-</option><option value="29504"> 4星魔族碎片
-</option><option value="29405"> 5星神族碎片
-</option><option value="29404"> 4星神族碎片
-</option><option value="29305"> 5星蜀国碎片
-</option><option value="29304"> 4星蜀国碎片
-</option><option value="29303"> 3星蜀国碎片
-</option><option value="29205"> 5星魏国碎片
-</option><option value="29204"> 4星魏国碎片
-</option><option value="29203"> 3星魏国碎片
-</option><option value="29105"> 5星吴国碎片
-</option><option value="29104"> 4星吴国碎片
-</option><option value="29103"> 3星吴国碎片
-</option><option value="28912"> 魔君·孙权碎片
-</option><option value="28911"> 魔·许褚碎片
-</option><option value="28910"> 魔·大乔碎片
-</option><option value="28909"> 魔·曹操碎片
-</option><option value="28908"> 魔·张春华碎片
-</option><option value="28907"> 魔·关羽碎片
-</option><option value="28906"> 魔·貂蝉碎片
-</option><option value="28905"> 魔·董卓碎片
-</option><option value="28904"> 魔·司马懿碎片
-</option><option value="28903"> 魔·吕布碎片
-</option><option value="28902"> 魔·典韦碎片
-</option><option value="28901"> 魔·张飞碎片
-</option><option value="28900"> 魔·贾诩碎片
-</option><option value="28803"> 魔·李儒碎片
-</option><option value="28802"> 魔·华雄碎片
-</option><option value="28801"> 魔·纪灵碎片
-</option><option value="28800"> 魔·程昱碎片
-</option><option value="28700"> 魔·李肃碎片
-</option><option value="27912"> 天水·洛神碎片
-</option><option value="27911"> 神·黄月英碎片
-</option><option value="27910"> 神·马超碎片
-</option><option value="27909"> 神·祝融碎片
-</option><option value="27908"> 神·刘备碎片
-</option><option value="27907"> 神·诸葛亮碎片
-</option><option value="27906"> 神·华佗碎片
-</option><option value="27905"> 神·甄姬碎片
-</option><option value="27904"> 神·高顺碎片
-</option><option value="27903"> 神·赵云碎片
-</option><option value="27902"> 神·庞统碎片
-</option><option value="27901"> 神·周瑜碎片
-</option><option value="27900"> 神·黄忠碎片
-</option><option value="27803"> 神·张角碎片
-</option><option value="27802"> 神·潘凤碎片
-</option><option value="27801"> 神·左慈碎片
-</option><option value="27800"> 神·于吉碎片
-</option><option value="27700"> 神·许劭碎片
-</option><option value="26912"> 黄舞蝶碎片
-</option><option value="26911"> 张星彩碎片
-</option><option value="26910"> 关银屏碎片
-</option><option value="26909"> 姜维碎片
-</option><option value="26908"> 张飞碎片
-</option><option value="26907"> 关羽碎片
-</option><option value="26906"> 诸葛亮碎片
-</option><option value="26905"> 庞统碎片
-</option><option value="26904"> 徐庶碎片
-</option><option value="26903"> 黄忠碎片
-</option><option value="26902"> 黄月英碎片
-</option><option value="26901"> 赵云碎片
-</option><option value="26900"> 马超碎片
-</option><option value="26804"> 蒋琬碎片
-</option><option value="26803"> 马良碎片
-</option><option value="26802"> 严颜碎片
-</option><option value="26801"> 魏延碎片
-</option><option value="26800"> 张松碎片
-</option><option value="26704"> 绿甲骑兵碎片
-</option><option value="26703"> 紫甲盾兵碎片
-</option><option value="26702"> 廖化碎片
-</option><option value="26701"> 紫甲骑兵碎片
-</option><option value="26700"> 灰袍女谋士碎片
-</option><option value="26601"> 张翼碎片
-</option><option value="26600"> 青袍女谋士碎片
-</option><option value="26500"> 黄权碎片
-</option><option value="25913"> 邓艾碎片
-</option><option value="25912"> 贾诩碎片
-</option><option value="25911"> 曹节碎片
-</option><option value="25910"> 庞德碎片
-</option><option value="25909"> 蔡文姬碎片
-</option><option value="25908"> 张辽碎片
-</option><option value="25907"> 夏侯惇碎片
-</option><option value="25906"> 郭嘉碎片
-</option><option value="25905"> 张郃碎片
-</option><option value="25904"> 司马懿碎片
-</option><option value="25903"> 典韦碎片
-</option><option value="25902"> 许褚碎片
-</option><option value="25901"> 荀彧碎片
-</option><option value="25900"> 徐晃碎片
-</option><option value="25804"> 陈群碎片
-</option><option value="25803"> 乐进碎片
-</option><option value="25802"> 曹仁碎片
-</option><option value="25801"> 满宠碎片
-</option><option value="25800"> 李典碎片
-</option><option value="25704"> 紫袍男谋士碎片
-</option><option value="25703"> 红袍男谋士碎片
-</option><option value="25702"> 红甲骑兵碎片
-</option><option value="25701"> 青甲盾兵碎片
-</option><option value="25700"> 于禁碎片
-</option><option value="25601"> 黄袍女谋士碎片
-</option><option value="25600"> 蒋干碎片
-</option><option value="25500"> 郭淮碎片
-</option><option value="24915"> 盖世·李元霸碎片
-</option><option value="24914"> 步练师碎片
-</option><option value="24913"> 孙策碎片
-</option><option value="24911"> 孙尚香碎片
-</option><option value="24910"> 孙权碎片
-</option><option value="24909"> 周瑜碎片
-</option><option value="24908"> 太史慈碎片
-</option><option value="24907"> 鲁肃碎片
-</option><option value="24906"> 张昭碎片
-</option><option value="24905"> 大乔碎片
-</option><option value="24904"> 甘宁碎片
-</option><option value="24903"> 周泰碎片
-</option><option value="24902"> 吕蒙碎片
-</option><option value="24901"> 陆逊碎片
-</option><option value="24900"> 小乔碎片
-</option><option value="24804"> 诸葛恪碎片
-</option><option value="24803"> 诸葛瑾碎片
-</option><option value="24802"> 顾雍碎片
-</option><option value="24801"> 张纮碎片
-</option><option value="24800"> 黄盖碎片
-</option><option value="24704"> 金甲骑兵碎片
-</option><option value="24703"> 绿袍男谋士碎片
-</option><option value="24702"> 韩当碎片
-</option><option value="24701"> 紫袍女谋士碎片
-</option><option value="24700"> 蓝袍女谋士碎片
-</option><option value="24601"> 凌统碎片
-</option><option value="24600"> 黑袍女谋士碎片
-</option><option value="24500"> 孙韶碎片
-</option><option value="28412"> 魔君·孙权
-</option><option value="28411"> 魔·许褚
-</option><option value="28410"> 魔·大乔
-</option><option value="28409"> 魔·曹操
-</option><option value="28408"> 魔·张春华
-</option><option value="28407"> 魔·关羽
-</option><option value="28406"> 魔·貂蝉
-</option><option value="28405"> 魔·董卓
-</option><option value="28404"> 魔·司马懿
-</option><option value="28403"> 魔·吕布
-</option><option value="28402"> 魔·典韦
-</option><option value="28401"> 魔·张飞
-</option><option value="28400"> 魔·贾诩
-</option><option value="28303"> 魔·李儒
-</option><option value="28302"> 魔·华雄
-</option><option value="28301"> 魔·纪灵
-</option><option value="28300"> 魔·程昱
-</option><option value="28200"> 魔·李肃
-</option><option value="27412"> 天水·洛神
-</option><option value="27411"> 神·黄月英
-</option><option value="27410"> 神·马超
-</option><option value="27409"> 神·祝融
-</option><option value="27408"> 神·刘备
-</option><option value="27407"> 神·诸葛亮
-</option><option value="27406"> 神·华佗
-</option><option value="27405"> 神·甄姬
-</option><option value="27404"> 神·高顺
-</option><option value="27403"> 神·赵云
-</option><option value="27402"> 神·庞统
-</option><option value="27401"> 神·周瑜
-</option><option value="27400"> 神·黄忠
-</option><option value="27303"> 神·张角
-</option><option value="27302"> 神·潘凤
-</option><option value="27301"> 神·左慈
-</option><option value="27300"> 神·于吉
-</option><option value="27200"> 神·许劭
-</option><option value="26412"> 黄舞蝶
-</option><option value="26411"> 张星彩
-</option><option value="26410"> 关银屏
-</option><option value="26409"> 姜维
-</option><option value="26408"> 张飞
-</option><option value="26407"> 关羽
-</option><option value="26406"> 诸葛亮
-</option><option value="26405"> 庞统
-</option><option value="26404"> 徐庶
-</option><option value="26403"> 黄忠
-</option><option value="26402"> 黄月英
-</option><option value="26401"> 赵云
-</option><option value="26400"> 马超
-</option><option value="26304"> 蒋琬
-</option><option value="26303"> 马良
-</option><option value="26302"> 严颜
-</option><option value="26301"> 魏延
-</option><option value="26300"> 张松
-</option><option value="26204"> 绿甲骑兵
-</option><option value="26203"> 紫甲盾兵
-</option><option value="26202"> 廖化
-</option><option value="26201"> 紫甲骑兵
-</option><option value="26200"> 灰袍女谋士
-</option><option value="26101"> 张翼
-</option><option value="26100"> 青袍女谋士
-</option><option value="26000"> 黄权
-</option><option value="25413"> 邓艾
-</option><option value="25412"> 贾诩
-</option><option value="25411"> 曹节
-</option><option value="25410"> 庞德
-</option><option value="25409"> 蔡文姬
-</option><option value="25408"> 张辽
-</option><option value="25407"> 夏侯惇
-</option><option value="25406"> 郭嘉
-</option><option value="25405"> 张郃
-</option><option value="25404"> 司马懿
-</option><option value="25403"> 典韦
-</option><option value="25402"> 许褚
-</option><option value="25401"> 荀彧
-</option><option value="25400"> 徐晃
-</option><option value="25304"> 陈群
-</option><option value="25303"> 乐进
-</option><option value="25302"> 曹仁
-</option><option value="25301"> 满宠
-</option><option value="25300"> 李典
-</option><option value="25204"> 紫袍男谋士
-</option><option value="25203"> 红袍男谋士
-</option><option value="25202"> 红甲骑兵
-</option><option value="25201"> 青甲盾兵
-</option><option value="25200"> 于禁
-</option><option value="25101"> 黄袍女谋士
-</option><option value="25100"> 蒋干
-</option><option value="25000"> 郭淮
-</option><option value="24415"> 盖世·李元霸(不存在）
-</option><option value="24414"> 步练师
-</option><option value="24413"> 孙策
-</option><option value="24411"> 孙尚香
-</option><option value="24410"> 孙权
-</option><option value="24409"> 周瑜
-</option><option value="24408"> 太史慈
-</option><option value="24407"> 鲁肃
-</option><option value="24406"> 张昭
-</option><option value="24405"> 大乔
-</option><option value="24404"> 甘宁
-</option><option value="24403"> 周泰
-</option><option value="24402"> 吕蒙
-</option><option value="24401"> 陆逊
-</option><option value="24400"> 小乔
-</option><option value="24304"> 诸葛恪
-</option><option value="24303"> 诸葛瑾
-</option><option value="24302"> 顾雍
-</option><option value="24301"> 张纮
-</option><option value="24300"> 黄盖
-</option><option value="24204"> 金甲骑兵
-</option><option value="24203"> 绿袍男谋士
-</option><option value="24202"> 韩当
-</option><option value="24201"> 紫袍女谋士
-</option><option value="24200"> 蓝袍女谋士
-</option><option value="24101"> 凌统
-</option><option value="24100"> 黑袍女谋士
-</option><option value="24000"> 孙韶
-</option>            </select>
+            <option value="11111111111">快乐币
+</option><option value="1">贝利
+</option><option value="22">英雄经验
+</option><option value="3">钻石
+</option><option value="5">船长经验
+</option><option value="7">远航情报
+</option><option value="8">竞技声望
+</option><option value="9">活跃度
+</option><option value="10">公会贡献
+</option><option value="11">友好值
+</option><option value="12">成就点
+</option><option value="14">友情点
+</option><option value="18">探宝积分
+</option><option value="20">冠军积分
+</option><option value="21">天梯积分
+</option><option value="23">召唤积分
+</option><option value="24">强者声望
+</option><option value="25">征战勋章
+</option><option value="27">荣誉徽章
+</option><option value="28">神装碎片
+</option><option value="29">皮肤碎片
+</option><option value="30">勇者印记
+</option><option value="31">家园币
+</option><option value="32">神技彤石
+</option><option value="34">冠军币
+</option><option value="35">强者印记
+</option><option value="36">勇者凭证
+</option><option value="38">巅峰币
+</option><option value="39">星命卡牌
+</option><option value="111001">强者幽灵
+</option><option value="111002">顽固幽灵
+</option><option value="111003">鼓舞幽灵
+</option><option value="111004">治愈幽灵
+</option><option value="111005">剧毒幽灵
+</option><option value="112001">吸血幽灵
+</option><option value="112002">恐吓幽灵
+</option><option value="112003">迟缓幽灵
+</option><option value="112004">振奋幽灵
+</option><option value="113001">收割幽灵
+</option><option value="113002">烂漫幽灵
+</option><option value="113003">破坏幽灵
+</option><option value="113004">南瓜幽灵
+</option><option value="113005">疾风幽灵
+</option><option value="113006">诅咒幽灵
+</option><option value="113007">护盾幽灵
+</option><option value="113008">净化幽灵
+</option><option value="113009">鬼岛幽灵 
+</option><option value="26305">五星阿布萨罗姆
+</option><option value="27306">五星布鲁诺
+</option><option value="27304">五星卡莉法
+</option><option value="24312">五星小八
+</option><option value="24314">五星克罗马利蒙
+</option><option value="25314">五星索隆
+</option><option value="26312">五星Mr.1
+</option><option value="26313">五星Mr.双手指
+</option><option value="26314">五星Mr.情人节
+</option><option value="24310">五星修罗
+</option><option value="30001">五星克利克
+</option><option value="30002">五星杰斯
+</option><option value="30003">五星加布拉
+</option><option value="30004">五星克洛
+</option><option value="90501">5星海贼新星英魂
+</option><option value="90502">5星草帽联盟英魂
+</option><option value="90503">5星强者英魂
+</option><option value="90504">5星海军英魂
+</option><option value="90505">5星五皇团英魂
+</option><option value="90900">9星英魂
+</option><option value="91000">10星英魂
+</option><option value="29906">5星海军五皇碎片
+</option><option value="29905">5星随机碎片
+</option><option value="29904">4星随机碎片
+</option><option value="29903">3星随机碎片
+</option><option value="29505">5星五皇碎片
+</option><option value="29504">4星五皇碎片
+</option><option value="29405">5星海军碎片
+</option><option value="29404">4星海军碎片
+</option><option value="29305">5星强者碎片
+</option><option value="29304">4星强者碎片
+</option><option value="29303">3星强者碎片
+</option><option value="29205">5星草帽联盟碎片
+</option><option value="29204">4星草帽联盟碎片
+</option><option value="29203">3星草帽联盟碎片
+</option><option value="29105">5星海贼新星碎片
+</option><option value="29104">4星海贼新星碎片
+</option><option value="29103">3星海贼新星碎片
+</option><option value="40401">粗制战靴
+</option><option value="40402">黑铁战靴
+</option><option value="40403">精钢战靴
+</option><option value="40404">骑士战靴
+</option><option value="40405">海贼之靴
+</option><option value="40406">狮王战靴
+</option><option value="40407">胜利战靴
+</option><option value="40408">海军战靴
+</option><option value="40409">冒险长靴
+</option><option value="40410">远途战靴
+</option><option value="40411">武装战靴
+</option><option value="40412">运行靴
+</option><option value="40413">大工匠之靴
+</option><option value="40414">女儿国战靴
+</option><option value="40415">风纹战靴
+</option><option value="40416">深渊战靴
+</option><option value="40417">神罚战靴
+</option><option value="40301">头巾
+</option><option value="40302">木牛角帽
+</option><option value="40303">皮盔
+</option><option value="40304">工程帽
+</option><option value="40305">重甲头盔
+</option><option value="40306">西装圆帽
+</option><option value="40307">钢牛角帽
+</option><option value="40308">角斗士头盔
+</option><option value="40309">武士头盔
+</option><option value="40310">麋鹿之灵
+</option><option value="40311">冰原熊守护
+</option><option value="40312">夸克海贼帽
+</option><option value="40313">三角海盗帽
+</option><option value="40314">安全头盔
+</option><option value="40315">闪光贝雷帽
+</option><option value="40316">皇家海军大将
+</option><option value="40317">皇家海军元帅
+</option><option value="40201">农民布衣
+</option><option value="40202">商人长袍
+</option><option value="40203">水手短装
+</option><option value="40204">海贼套装
+</option><option value="40205">海贼重装
+</option><option value="40206">海侠之披
+</option><option value="40207">精致西装
+</option><option value="40208">海军正装
+</option><option value="40209">正义装束
+</option><option value="40210">副船长战袍
+</option><option value="40211">船长战袍
+</option><option value="40212">贵族装束
+</option><option value="40213">华丽之饰
+</option><option value="40214">和之国战甲
+</option><option value="40215">将军护甲
+</option><option value="40216">海楼石装甲
+</option><option value="40217">暗暗布衣
+</option><option value="40101">粗制铁剑
+</option><option value="40102">黑铁巨剑
+</option><option value="40103">精钢单刀
+</option><option value="40104">骑士长剑
+</option><option value="40105">海贼突击剑
+</option><option value="40106">狮王剑
+</option><option value="40107">左轮手枪
+</option><option value="40108">海军战刃
+</option><option value="40109">海军手斧
+</option><option value="40110">中将佩剑
+</option><option value="40111">妖刀白刃
+</option><option value="40112">大关刀
+</option><option value="40113">名剑月刃
+</option><option value="40114">格里芬
+</option><option value="40115">风纹天候棒
+</option><option value="40116">名刀狩魂
+</option><option value="40117">大冥王
+</option><option value="40118">=======
+</option><option value="89140501">[极品]玄护套装随机部位
+</option><option value="89130501">[极品]极速套装随机部位
+</option><option value="89120501">[极品]神愈套装随机部位
+</option><option value="89110501">[极品]龙威套装随机部位
+</option><option value="89100501">[极品]神战套装随机部位
+</option><option value="89090501">[极品]魔甲套装随机部位
+</option><option value="89080501">[极品]镇灵套装随机部位
+</option><option value="89070501">[极品]斗战套装随机部位
+</option><option value="89060501">[极品]破法套装随机部位
+</option><option value="89050501">[极品]穿甲套装随机部位
+</option><option value="89040501">[极品]灵咏套装随机部位
+</option><option value="89030501">[极品]斗志套装随机部位
+</option><option value="89020501">[极品]狂怒套装随机部位
+</option><option value="89010501">[极品]勇气套装随机部位
+</option><option value="89140301">[极品]玄护套装随机部位
+</option><option value="89130301">[极品]极速套装随机部位
+</option><option value="89120301">[极品]神愈套装随机部位
+</option><option value="89110301">[极品]龙威套装随机部位
+</option><option value="89100301">[极品]神战套装随机部位
+</option><option value="89090301">[极品]魔甲套装随机部位
+</option><option value="89080301">[极品]镇灵套装随机部位
+</option><option value="89070301">[极品]斗战套装随机部位
+</option><option value="89060301">[极品]破法套装随机部位
+</option><option value="89050301">[极品]穿甲套装随机部位
+</option><option value="89040301">[极品]灵咏套装随机部位
+</option><option value="89030301">[极品]斗志套装随机部位
+</option><option value="89020301">[极品]狂怒套装随机部位
+</option><option value="89010301">[极品]勇气套装随机部位
+</option><option value="99007">解锁进阶奖励
+</option><option value="99006">解锁进阶奖励
+</option><option value="99001">新春红包
+</option><option value="99000">投资计划
+</option><option value="81004">巧克力
+</option><option value="81003">糖果
+</option><option value="81002">奶油
+</option><option value="81001">甜蜜积分币
+</option><option value="80401">新年龙马形象
+</option><option value="80352">烟花
+</option><option value="80351">新春蛋糕
+</option><option value="80304">糯糯年糕
+</option><option value="80303">克力饼干
+</option><option value="80302">斯慕果汁
+</option><option value="80301">炸物天妇罗
+</option><option value="80268">火灵环
+</option><option value="80267">竞技作战心得
+</option><option value="80266">征战约定
+</option><option value="80265">夺宝阅历
+</option><option value="80264">春蕾芽枝
+</option><option value="80263">金锦鲤
+</option><option value="80262">雪花飞刃
+</option><option value="80261">终点
+</option><option value="80260">弗拉格
+</option><option value="80259">大boss出现了
+</option><option value="80258">天降红包
+</option><option value="80257">神秘事件
+</option><option value="80256">强者的对决
+</option><option value="80255">南瓜大礼包
+</option><option value="80254">啊，是陷阱！
+</option><option value="80253">血量提升！
+</option><option value="80252">攻击力提升！
+</option><option value="80251">大量米饭
+</option><option value="80250">这，就是希望么
+</option><option value="80249">和之国小米酒
+</option><option value="80248">喷射气
+</option><option value="80247">和之国地图
+</option><option value="80246">鬼头机
+</option><option value="80245">火祭挑战卷
+</option><option value="80244">年糕小汤丸
+</option><option value="80243">南瓜头
+</option><option value="80240">合服宝箱
+</option><option value="80239">合服积分
+</option><option value="80238">礼花炮
+</option><option value="80237">流星弹
+</option><option value="80236">花火积分
+</option><option value="80235">秋日枫叶
+</option><option value="80234">最强冒险家认定
+</option><option value="80233">失落的准考证
+</option><option value="80232">满分试卷
+</option><option value="85002">强化训练1500
+</option><option value="85001">砖石400
+</option><option value="80231">解锁额外经验包
+</option><option value="80230">写不完的作业本
+</option><option value="80229">绚蝶音符
+</option><option value="80228">试炼彩星
+</option><option value="80227">解锁额外经验包
+</option><option value="80226">沙滩贝壳
+</option><option value="80225">冒险经验
+</option><option value="80224">勇者经验
+</option><option value="80223">夏日积分
+</option><option value="80222">希望印记
+</option><option value="80221">活跃值
+</option><option value="80220">冒险阅历
+</option><option value="80219">希望印记
+</option><option value="80218">冒险阅历
+</option><option value="80217">希望印记
+</option><option value="80216">冒险阅历
+</option><option value="80215">希望印记
+</option><option value="80214">希望印记
+</option><option value="80213">冒险阅历
+</option><option value="80212">冒险阅历
+</option><option value="80211">糯米粉
+</option><option value="80210">黑芝麻
+</option><option value="80209">特级糖粉
+</option><option value="80208">不可名状之物
+</option><option value="80207">神秘的元宵
+</option><option value="80206">发光的元宵
+</option><option value="80205">八宝元宵
+</option><option value="80204">丰登元宵
+</option><option value="80203">纳福元宵
+</option><option value="80202">欢庆元宵
+</option><option value="80201">元宵花灯
+</option><option value="80109">莹蓝冰晶
+</option><option value="80108">破蕾桃枝
+</option><option value="80107">生命之苗
+</option><option value="80106">游园奖券
+</option><option value="80105">元宵汤圆
+</option><option value="80104">祭典奖券
+</option><option value="80103">新春福印
+</option><option value="80102">冬日雪花
+</option><option value="80101">星命纹章
+</option><option value="72112">精灵秘典
+</option><option value="72111">海神三叉戟
+</option><option value="72110">烈焰之剑
+</option><option value="72109">死神镰刀
+</option><option value="72107">永恒神枪
+</option><option value="72106">冯克雷战腕
+</option><option value="72104">埃里克血斧
+</option><option value="72103">魔神之锤
+</option><option value="72102">罗睺之弓
+</option><option value="60305">英魂礼包
+</option><option value="60302">VIP节日专属礼包
+</option><option value="60301">VIP专属礼包
+</option><option value="60204">三系5星材料自选
+</option><option value="60203">海贼新星输出自选礼包
+</option><option value="60202">三系输出自选礼包
+</option><option value="60201">三系辅助自选礼包
+</option><option value="60134">合作至上头像框
+</option><option value="60133">卓尔不群头像框
+</option><option value="60132">不凡传说头像框
+</option><option value="60131">巅峰至尊头像框
+</option><option value="60120">冠世王者头像框
+</option><option value="60102">V10专属头像框
+</option><option value="60101">V5专属头像框
+</option><option value="60003">新年活动专属头像
+</option><option value="60002">V7专属头像
+</option><option value="60001">V4专属头像
+</option><option value="72003">刻印石
+</option><option value="72002">神器符石
+</option><option value="72001">炼神石
+</option><option value="55903">群山之巅
+</option><option value="55902">勇攀高峰
+</option><option value="55901">友谊与荣耀
+</option><option value="55809">金瑞贺新春
+</option><option value="55808">冒险嘉年华
+</option><option value="55807">奇境探险家
+</option><option value="55806">试炼之星
+</option><option value="55805">智慧之贤者
+</option><option value="55804">皇家骑士团
+</option><option value="55803">冒险的领航人
+</option><option value="55802">黄金的勇者
+</option><option value="55801">试炼之境
+</option><option value="55709">神力觉醒
+</option><option value="55708">智慧之神
+</option><option value="55707">神之恩宠
+</option><option value="55706">欧皇降临
+</option><option value="55705">欧气满满
+</option><option value="55704">谁与争锋
+</option><option value="55703">冠绝一时
+</option><option value="55702">初露锋芒
+</option><option value="55701">神明眷顾
+</option><option value="55604">超凡之巅
+</option><option value="55603">王者之心
+</option><option value="55602">强者之证
+</option><option value="55601">赛季精英
+</option><option value="55502">试练·引领者
+</option><option value="55501">试练·突破者
+</option><option value="55433">众神之巅
+</option><option value="55432">巅峰荣耀·8强
+</option><option value="55431">巅峰荣耀·64强
+</option><option value="55423">勇冠神界
+</option><option value="55422">荣耀之冠·8强
+</option><option value="55421">荣耀之冠·64强
+</option><option value="55413">冠军之冕
+</option><option value="55412">冠军赛·8强
+</option><option value="55411">冠军赛·32强
+</option><option value="55403">大探险家
+</option><option value="55402">探险者
+</option><option value="55401">寻宝者
+</option><option value="55313">所向披靡
+</option><option value="55312">战无不胜
+</option><option value="55311">攻无不克
+</option><option value="55304">无尽·巅峰
+</option><option value="55303">无尽·高级
+</option><option value="55302">无尽·中级
+</option><option value="55301">无尽·初级
+</option><option value="55205">长环岛冒险·暗
+</option><option value="55204">长环岛冒险·光
+</option><option value="55203">长环岛冒险·风
+</option><option value="55202">长环岛冒险·火
+</option><option value="55201">长环岛冒险·水
+</option><option value="55185">长环岛·征战
+</option><option value="55184">长环岛·巅峰
+</option><option value="55183">长环岛·引领
+</option><option value="55182">长环岛·突破
+</option><option value="55181">长环岛·探险
+</option><option value="55104">信念主宰
+</option><option value="55103">信念领主
+</option><option value="55102">信念掌控
+</option><option value="55101">信念之力
+</option><option value="51203">强强联合
+</option><option value="51202">荣耀军团
+</option><option value="51201">闪耀群星
+</option><option value="51103">星灵勇者
+</option><option value="51102">月耀领主
+</option><option value="51101">天启战神
+</option><option value="51003">洛辉宗师
+</option><option value="51002">灵耀王者
+</option><option value="51001">超凡之巅
+</option><option value="50920">踏雪花晨
+</option><option value="50919">最强土豪
+</option><option value="50918">2020
+</option><option value="50917">重逢之旅
+</option><option value="50916">王者之辉
+</option><option value="50915">雪舞冬季
+</option><option value="50914">奇妙之夜
+</option><option value="50913">神壕登场
+</option><option value="50912">花火映秋
+</option><option value="50911">一等学霸
+</option><option value="50910">神奏之音
+</option><option value="50909">潮汐猎人
+</option><option value="50908">勇者归来
+</option><option value="50907">冒险勇士
+</option><option value="50906">冒险骑士团
+</option><option value="50905">荣耀之光
+</option><option value="50904">英灵勇士
+</option><option value="50903">缤纷夏日
+</option><option value="50902">心动闪烁
+</option><option value="50901">花灯福愿
+</option><option value="50803">天梯达人
+</option><option value="50802">名列前茅
+</option><option value="50801">登峰造极
+</option><option value="50703">瀚海星灵
+</option><option value="50702">贝基之耀
+</option><option value="50701">万殿之巅
+</option><option value="50603">不败神话
+</option><option value="50602">战场霸主
+</option><option value="50601">战场勇者
+</option><option value="50305">闪烁之光
+</option><option value="50304">神之眷顾
+</option><option value="50303">最强幸运星
+</option><option value="50302">寻宝幸运星
+</option><option value="50015">贵族气质
+</option><option value="50014">苍蓝斗士
+</option><option value="50013">星辰勇者
+</option><option value="50012">最强王者
+</option><option value="50037">英灵武神
+</option><option value="50036">星光熠熠
+</option><option value="50035">猫咪物语
+</option><option value="50034">猫咪物语
+</option><option value="50033">玫瑰恋人
+</option><option value="50032">初春新芽
+</option><option value="50031">祥瑞贺岁
+</option><option value="50030">祥瑞送福
+</option><option value="50029">金鼠贺岁
+</option><option value="50028">岁初礼赞
+</option><option value="50027">巅峰勇者
+</option><option value="50026">巅峰斗者
+</option><option value="50025">巅峰王者
+</option><option value="50024">巅峰至尊
+</option><option value="50023">纯白雪舞
+</option><option value="50022">恶魔之息
+</option><option value="50021">万圣南瓜夜
+</option><option value="50020">秋日私语
+</option><option value="50019">指导员
+</option><option value="50018">被选中之人
+</option><option value="50017">深藏功与名
+</option><option value="50016">我的王之力
+</option><option value="50010">冠世王者
+</option><option value="50009">三好学生
+</option><option value="50008">音舞绚蝶
+</option><option value="50007">缤纷盛夏
+</option><option value="50006">逐浪之夏
+</option><option value="50005">英灵勇者
+</option><option value="50004">众星捧月
+</option><option value="50003">无畏斗士
+</option><option value="50002">竞技达人
+</option><option value="50001">王者之姿
+</option><option value="50000">贵族气质
+</option><option value="39166">火灵礼盒
+</option><option value="39165">限定精英自选卡
+</option><option value="39164">3系碎片自选宝箱
+</option><option value="39163">欧皇宝箱
+</option><option value="39162">精英召唤自选卡
+</option><option value="39161">精英自选卡
+</option><option value="39160">冒险礼盒
+</option><option value="39159">极品5星神装自选箱
+</option><option value="39158">自选信物
+</option><option value="39157">5系英雄碎片自选宝箱
+</option><option value="39156">极品5星玄护自选神装
+</option><option value="39155">极品5星极速自选神装
+</option><option value="39154">极品5星神愈自选神装
+</option><option value="39153">极品5星龙威自选神装
+</option><option value="39152">极品5星神战自选神装
+</option><option value="39151">极品5星魔甲自选神装
+</option><option value="39150">极品5星镇灵自选神装
+</option><option value="39149">极品5星斗战自选神装
+</option><option value="39148">极品5星破法自选神装
+</option><option value="39147">极品5星穿甲自选神装
+</option><option value="39146">极品5星灵咏自选神装
+</option><option value="39145">极品5星斗志自选神装
+</option><option value="39144">极品5星狂怒自选神装
+</option><option value="39143">极品5星勇气自选神装
+</option><option value="39142">极品4星玄护自选神装
+</option><option value="39141">极品4星极速自选神装
+</option><option value="39140">极品4星神愈自选神装
+</option><option value="39139">极品4星龙威自选神装
+</option><option value="39138">极品4星神战自选神装
+</option><option value="39137">极品4星魔甲自选神装
+</option><option value="39136">极品4星镇灵自选神装
+</option><option value="39135">极品4星斗战自选神装
+</option><option value="39134">极品4星破法自选神装
+</option><option value="39133">极品4星穿甲自选神装
+</option><option value="39132">极品4星灵咏自选神装
+</option><option value="39131">极品4星斗志自选神装
+</option><option value="39130">极品4星狂怒自选神装
+</option><option value="39129">极品4星勇气自选神装
+</option><option value="39128">极品3星玄护自选神装
+</option><option value="39127">极品3星极速自选神装
+</option><option value="39126">极品3星神愈自选神装
+</option><option value="39125">极品3星龙威自选神装
+</option><option value="39124">极品3星神战自选神装
+</option><option value="39123">极品3星魔甲自选神装
+</option><option value="39122">极品3星镇灵自选神装
+</option><option value="39121">极品3星斗战自选神装
+</option><option value="39120">极品3星破法自选神装
+</option><option value="39119">极品3星穿甲自选神装
+</option><option value="39118">极品3星灵咏自选神装
+</option><option value="39117">极品3星斗志自选神装
+</option><option value="39116">极品3星狂怒自选神装
+</option><option value="39115">极品3星勇气自选神装
+</option><option value="39114">极品2星玄护自选神装
+</option><option value="39113">极品2星极速自选神装
+</option><option value="39112">极品2星神愈自选神装
+</option><option value="39111">极品2星龙威自选神装
+</option><option value="39110">极品2星神战自选神装
+</option><option value="39109">极品2星魔甲自选神装
+</option><option value="39108">极品2星镇灵自选神装
+</option><option value="39107">极品2星斗战自选神装
+</option><option value="39106">极品2星破法自选神装
+</option><option value="39105">极品2星穿甲自选神装
+</option><option value="39104">极品2星灵咏自选神装
+</option><option value="39103">极品2星斗志自选神装
+</option><option value="39102">极品2星狂怒自选神装
+</option><option value="39101">极品2星勇气自选神装
+</option><option value="39100">橙色4星装备自选箱
+</option><option value="39099">红色1星装备自选箱
+</option><option value="39098">红色2星装备自选箱
+</option><option value="39097">红色3星装备自选箱
+</option><option value="39096">红色4星装备自选箱
+</option><option value="39095">红色5星装备自选箱
+</option><option value="39094">精英自选宝箱
+</option><option value="39093">精英召唤自选奖励
+</option><option value="39092">白色情人节礼盒
+</option><option value="39091">森林宝盒
+</option><option value="39090">精英自选礼盒
+</option><option value="39089">每日首充尊享礼包
+</option><option value="39088">每日首充专属礼包
+</option><option value="39087">每日首充特级礼包
+</option><option value="39086">每日首充高级礼包
+</option><option value="39085">每日首充精英礼包
+</option><option value="39084">每日首充幸运礼包
+</option><option value="39083">每日首充特惠礼包
+</option><option value="39082">稀有符石自选礼包
+</option><option value="39081">材料自选礼包
+</option><option value="39080">珍稀宝盒
+</option><option value="39079">材料自选福袋
+</option><option value="39078">皮肤自选礼盒
+</option><option value="39077">甜蜜礼盒
+</option><option value="39076">精英碎片宝盒
+</option><option value="39075">春节礼包
+</option><option value="39074">精英碎片礼盒
+</option><option value="39073">幸运碎片礼盒
+</option><option value="39072">新春福袋
+</option><option value="39071">新春宝箱
+</option><option value="39070">天使礼盒
+</option><option value="39069">新春利是
+</option><option value="39068">恭贺新禧VIP礼盒
+</option><option value="39067">精灵之魂
+</option><option value="39066">新年礼盒
+</option><option value="39065">岁初礼盒
+</option><option value="39064">圣诞礼盒
+</option><option value="39062">欧皇宝盒
+</option><option value="39063">幸运宝袋
+</option><option value="39061">嘉年华蛋糕
+</option><option value="39060">英雄祈愿自选礼盒
+</option><option value="39059">回归福袋
+</option><option value="39058">极品五星神装自选礼包
+</option><option value="39057">感恩宴礼
+</option><option value="39056">橙色幽灵自选礼盒
+</option><option value="39055">守护之礼
+</option><option value="39054">高级召唤礼包
+</option><option value="39053">精英召唤礼包
+</option><option value="39052">百万贝利礼盒
+</option><option value="39051">幽灵扭蛋礼包
+</option><option value="39050">小鬼南瓜礼包
+</option><option value="39049">幸运钻石福袋
+</option><option value="39048">月神礼盒
+</option><option value="39047">随机符石礼包
+</option><option value="39046">绝黯之礼
+</option><option value="39045">双蛋黄莲蓉月饼
+</option><option value="39044">玉兔宝盒
+</option><option value="39043">大将礼包
+</option><option value="39042">七夕臻礼
+</option><option value="39041">天籁之音
+</option><option value="39040">大将自选礼盒
+</option><option value="39039">强力英雄自选礼盒
+</option><option value="39038">庆典礼盒
+</option><option value="39037">幸运精英宝盒
+</option><option value="39036">松果宝盒
+</option><option value="39035">5星碎片礼盒
+</option><option value="39034">粽夏之礼
+</option><option value="39033">夏日皮肤礼包
+</option><option value="39032">巨镰之礼
+</option><option value="39031">金蛋好礼
+</option><option value="39030">魔狼宝藏
+</option><option value="39029">盛夏之约礼包
+</option><option value="39028">初夏之约礼包
+</option><option value="39027">精英自选礼
+</option><option value="39523">极品5星神装自选礼包
+</option><option value="39522">极品3星神装自选礼包
+</option><option value="39519">3星极品玄护套
+</option><option value="39518">3星极品极速套
+</option><option value="39517">3星新神装自选礼盒
+</option><option value="39516">6星极品灵咏套
+</option><option value="39515">6星极品斗志套
+</option><option value="39514">6星极品狂怒套
+</option><option value="39513">6星极品套装自选礼盒
+</option><option value="39512">5星极品灵咏套
+</option><option value="39511">5星极品斗志套
+</option><option value="39510">5星极品狂怒套
+</option><option value="39509">5星极品套装自选礼盒
+</option><option value="39508">4星极品灵咏套
+</option><option value="39507">4星极品斗志套
+</option><option value="39506">4星极品狂怒套
+</option><option value="39505">4星极品套装自选礼盒
+</option><option value="39504">3星极品灵咏套
+</option><option value="39503">3星极品斗志套
+</option><option value="39502">3星极品狂怒套
+</option><option value="39501">3星极品套装自选礼盒
+</option><option value="39500">2星极品灵咏套
+</option><option value="39499">2星极品斗志套
+</option><option value="39498">2星极品狂怒套
+</option><option value="39497">2星极品套装自选礼盒
+</option><option value="39496">1星极品灵咏套
+</option><option value="39495">1星极品斗志套
+</option><option value="39494">1星极品狂怒套
+</option><option value="39493">1星极品套装自选礼盒
+</option><option value="39025">2星极品灵咏套
+</option><option value="39024">2星极品斗志套
+</option><option value="39023">2星极品狂怒套
+</option><option value="39022">2星极品套装礼盒
+</option><option value="39021">伟大召唤珍宝福袋
+</option><option value="39020">圣光之心
+</option><option value="39019">幸运福蛋
+</option><option value="39018">冬日福利
+</option><option value="39017">春日暖阳礼包
+</option><option value="39016">春日钻石宝藏
+</option><option value="39015">春日钻石补给箱
+</option><option value="39014">春日钻石礼盒
+</option><option value="39013">春日钻石福袋
+</option><option value="39012">宝藏钥匙福袋
+</option><option value="39011">限定召唤福袋
+</option><option value="39010">信念意志随机礼包
+</option><option value="39009">尊享自选材料包
+</option><option value="39008">豪华自选材料包
+</option><option value="39007">寻宝达人福袋
+</option><option value="39006">伟大召唤福袋
+</option><option value="39005">草帽联盟英雄碎片福袋
+</option><option value="39004">海贼新星英雄碎片福袋
+</option><option value="39003">自然英雄碎片福袋
+</option><option value="39002">英雄碎片福袋
+</option><option value="39001">幸运召唤福袋
+</option><option value="39000">幸运宝盒
+</option><option value="38101">3星橙装礼包
+</option><option value="37012">美酒
+</option><option value="37011">玫瑰之钥
+</option><option value="37010">中国结
+</option><option value="37009">世界征兵令
+</option><option value="37008">圣诞币
+</option><option value="37007">夺宝积分
+</option><option value="37006">夺宝币
+</option><option value="37005">时光之力
+</option><option value="37004">小金锤
+</option><option value="37003">宝藏钥匙
+</option><option value="38042">高级探宝礼包
+</option><option value="38041">幸运探宝礼包
+</option><option value="37002">高级探宝券
+</option><option value="37001">探宝券
+</option><option value="30057">幽灵培养特权
+</option><option value="30056">领地挑战特权
+</option><option value="30055">远航豪华特权
+</option><option value="30054">远航高级特权
+</option><option value="30053">快速作战特权
+</option><option value="38040">远航豪华特权礼
+</option><option value="38030">远航高级特权礼
+</option><option value="30052">极品橙装蓝钻包
+</option><option value="30051">绝版头像蓝钻包
+</option><option value="30050">英雄升星红钻包
+</option><option value="38093">珍稀橙装套
+</option><option value="38092">随机4星橙装礼包
+</option><option value="38091">随机3星橙装礼包
+</option><option value="38081">随机2星橙装礼包
+</option><option value="38080">随机橙装礼包
+</option><option value="38071">随机3星红装礼包
+</option><option value="38061">随机2星红装礼包
+</option><option value="38051">随机红装礼包
+</option><option value="30006">神技精石礼包
+</option><option value="22007">青雉幻神卡
+</option><option value="22006">黑胡子新世界幻神卡
+</option><option value="22005">乌索普幻神卡
+</option><option value="22004">路奇幻神卡
+</option><option value="22003">闪电幻神卡
+</option><option value="22002">阿龙幻神卡
+</option><option value="22001">暴君熊幻神卡
+</option><option value="17211">船妖精
+</option><option value="17210">船精灵
+</option><option value="17011">信念之灵
+</option><option value="17009">原初意志
+</option><option value="17008">混沌意志
+</option><option value="17005">首领意志
+</option><option value="17004">海军意志
+</option><option value="17003">强者意志
+</option><option value="17002">自由意志
+</option><option value="17001">海贼意志
+</option><option value="16202">自选觉醒符石礼包
+</option><option value="16201">随机觉醒符石
+</option><option value="16108">急救符石
+</option><option value="16107">灵感符石
+</option><option value="16106">庇护符石
+</option><option value="16105">信仰符石
+</option><option value="16104">制裁符石
+</option><option value="16103">灵巧符石
+</option><option value="16102">蓄力符石
+</option><option value="16101">破裂符石
+</option><option value="16047">贪婪符石
+</option><option value="16046">驱灵符石
+</option><option value="16045">圣灵符石
+</option><option value="16044">神赦符石
+</option><option value="16043">波动符石
+</option><option value="16042">专注符石
+</option><option value="16041">英勇符石
+</option><option value="16040">反伤符石
+</option><option value="16039">清心符石
+</option><option value="16038">护盾符石
+</option><option value="16037">神体符石
+</option><option value="16036">吸取符石
+</option><option value="16035">物连符石
+</option><option value="16034">免伤符石
+</option><option value="16033">法连符石
+</option><option value="16032">命中符石
+</option><option value="16031">穿透符石
+</option><option value="16030">迟缓符石
+</option><option value="16029">生机符石
+</option><option value="16028">铁甲符石
+</option><option value="16027">魔免符石
+</option><option value="16026">抗暴符石
+</option><option value="16025">神佑符石
+</option><option value="16024">保命符石
+</option><option value="16023">再生符石
+</option><option value="16022">抗控符石
+</option><option value="16021">净化符石
+</option><option value="16020">精准符石
+</option><option value="16019">镇压符石
+</option><option value="16018">闪避符石
+</option><option value="16017">荣光符石
+</option><option value="16016">减速符石
+</option><option value="16015">挑衅符石
+</option><option value="16014">冲击符石
+</option><option value="16013">驱散符石
+</option><option value="16012">灭魂符石
+</option><option value="16011">降疗符石
+</option><option value="16010">降临符石
+</option><option value="16009">回音符石
+</option><option value="16008">迅捷符石
+</option><option value="16007">战意符石
+</option><option value="16006">狂暴符石
+</option><option value="16005">暴怒符石
+</option><option value="16004">暴追符石
+</option><option value="16003">追击符石
+</option><option value="16002">神力符石
+</option><option value="16001">魔力符石
+</option><option value="10703">奥术法杖
+</option><option value="10702">星辰锤
+</option><option value="10701">小木槌
+</option><option value="10603">传奇灵碑
+</option><option value="10602">史诗灵碑
+</option><option value="10601">普通灵碑
+</option><option value="14002">转换精华
+</option><option value="14001">强者招募令
+</option><option value="14000">神将之灵
+</option><option value="10490">高级好运宝珠
+</option><option value="10500">祝福值
+</option><option value="10480">原能碎片
+</option><option value="10470">好运宝珠
+</option><option value="10460">觉醒石
+</option><option value="10451">低级战技
+</option><option value="10452">中级战技
+</option><option value="10453">高级战技
+</option><option value="10454">超级战技
+</option><option value="10455">传说战技
+</option><option value="10450">强化训练
+</option><option value="10418">时光漂流瓶
+</option><option value="10417">回归红包
+</option><option value="10416">英雄祈愿券
+</option><option value="10415">精灵幸运石
+</option><option value="10409">幸运冒险召唤卷
+</option><option value="10408">精英召唤卷
+</option><option value="10407">限定召唤卷
+</option><option value="10403">高级召唤卷
+</option><option value="10401">普通召唤卷
+</option><option value="10301">冠军之心
+</option><option value="10201">战神宝箱
+</option><option value="10200">竞技宝箱
+</option><option value="10152">秘宝钥匙
+</option><option value="10103">竞技声望300
+</option><option value="10096">共鸣遗物
+</option><option value="10095">影影魔液
+</option><option value="10803">至尊钻石红包令
+</option><option value="10802">豪华钻石红包令
+</option><option value="10801">高端大气红包令
+</option><option value="10800">贝利红包令
+</option><option value="10042">获取途径用
+</option><option value="10041">圣露
+</option><option value="10040">训练果实
+</option><option value="10034">生命金卡
+</option><option value="10033">家园钥匙
+</option><option value="10030">空岛原石
+</option><option value="10020">全盟增幅卷轴
+</option><option value="10010">魂石
+</option><option value="10006">霸气秘典
+</option><option value="10005">英魂之心
+</option><option value="10004">快速作战券
+</option><option value="10003">副本扫荡券
+</option><option value="10002">远航刷新券
+</option><option value="10001">突破卡</option>            </select>
             </div>
             <div class="form-group">
               <input type="text" class="form-control" onKeyUp="value=value.replace(/^(0+)|[^\d]+/g,'')" id="num" name="num" placeholder="请输入数量" autocomplete="off">
             </div></div>
-		  	 
-			 <div id='gm_libao' style="display:none">
-			 <select id='gmlb' class="form-control"><option value='0'>请选择需要发送的自定义礼包,默认礼包1</option>
-			   <option value="0">8元首充</option><option value="1">33元礼包</option><option value="2">66元充值</option>			 
-			 </select>
-			 
-			 </div>
-			 
-			 <div id='heroitem' style="display:none;">
+			
+			<div id='send_part' style="display:none;">
             <div class="form-group">
 			<div class="input-group">
             <input type='text' class="form-control" value='' id='searchipt2' placeholder='英雄搜索'>
 			<span class="input-group-btn"><button class="btn btn-info" type="button" id='search2' >搜索</button></span>	
 			</div>
-            </div>
+        </div>
 			<div class="form-group">
 			<select id='bid' class="form-control"><option value='0'>请选择需要发送的英雄</option>
-            <option value="10501">小乔
-</option><option value="10502">陆逊
-</option><option value="10503">周瑜
-</option><option value="10504">周泰
-</option><option value="10505">甘宁
-</option><option value="10507">张昭
-</option><option value="10510">吕蒙
-</option><option value="10511">孙权
-</option><option value="10512">孙尚香
-</option><option value="10514">孙策
-</option><option value="10515">步练师
-</option><option value="20501">徐晃
-</option><option value="20502">荀彧
-</option><option value="20504">典韦
-</option><option value="20505">司马懿
-</option><option value="20507">郭嘉
-</option><option value="20508">夏侯惇
-</option><option value="20509">张辽
-</option><option value="20510">蔡文姬
-</option><option value="20511">庞德
-</option><option value="20512">曹节
-</option><option value="20513">贾诩
-</option><option value="20514">邓艾
-</option><option value="30501">马超
-</option><option value="30502">赵云
-</option><option value="30504">黄忠
-</option><option value="30506">庞统
-</option><option value="30507">诸葛亮
-</option><option value="30508">关羽
-</option><option value="30509">张飞
-</option><option value="30510">姜维
-</option><option value="30511">关银屏
-</option><option value="30512">张星彩
-</option><option value="30513">黄舞蝶
-</option><option value="40502">神周瑜
-</option><option value="40503">神庞统
-</option><option value="40504">神赵云
-</option><option value="40505">神高顺
-</option><option value="40506">神甄姬
-</option><option value="40507">神华佗
-</option><option value="40508">神诸葛亮
-</option><option value="40509">神刘备
-</option><option value="40510">神祝融
-</option><option value="40511">神马超
-</option><option value="40512">神黄月英
-</option><option value="40513">天水洛神
-</option><option value="50501">魔贾诩
-</option><option value="50502">魔张飞
-</option><option value="50503">魔典韦
-</option><option value="50504">魔吕布
-</option><option value="50505">魔司马懿
-</option><option value="50506">魔董卓
-</option><option value="50507">魔貂蝉
-</option><option value="50508">魔关羽
-</option><option value="50509">魔张春华
-</option><option value="50512">魔许褚
-</option><option value="50513">魔君孙权
-</option><option value="50511">魔大乔
-</option><option value="50510">魔曹操
-</option><option value="10516">SP甘宁（新出角色）
-</option><option value="40514">狂雷·张辽（新出角色）</option>            </select>
+            <option value="10304">汉尼拔
+</option><option value="10401">修罗
+</option><option value="10402">卡巴奇
+</option><option value="10403">小八
+</option><option value="10404">杰斯
+</option><option value="10405">克罗马利蒙
+</option><option value="10501">幽冥公主
+</option><option value="10502">艾斯
+</option><option value="10503">德雷克
+</option><option value="10504">贝基
+</option><option value="10505">基德
+</option><option value="10506">大悟
+</option><option value="10507">贝拉米
+</option><option value="10508">小丑巴基
+</option><option value="10509">冯克雷
+</option><option value="10510">艾尼路
+</option><option value="10511">罗
+</option><option value="10512">萨博（路西）
+</option><option value="10514">阿普
+</option><option value="20401">冰山
+</option><option value="20402">娜美
+</option><option value="20403">天空骑士
+</option><option value="20404">巴里
+</option><option value="20405">索隆
+</option><option value="20501">弗兰奇
+</option><option value="20502">乌索普
+</option><option value="20503">薇薇
+</option><option value="20504">布鲁克
+</option><option value="20505">娜美(伟大航路)
+</option><option value="20506">韦伯
+</option><option value="20507">乔巴
+</option><option value="20508">索隆(伟大航路)
+</option><option value="20509">山治
+</option><option value="20510">路飞
+</option><option value="20511">甚平
+</option><option value="20512">罗宾
+</option><option value="20513">白星
+</option><option value="30302">Mr.9
+</option><option value="30304">Mr.5
+</option><option value="30305">玛格丽特
+</option><option value="30401">Mr.3
+</option><option value="30402">阿布萨罗姆
+</option><option value="30403">Mr.1
+</option><option value="30404">Mr.双手指
+</option><option value="30405">Mr.情人节
+</option><option value="30501">鳄鱼
+</option><option value="30502">暴君熊
+</option><option value="30503">伊万科夫
+</option><option value="30504">闪电
+</option><option value="30505">霍古巴克
+</option><option value="30506">萨博（火拳）
+</option><option value="30507">月光莫利亚
+</option><option value="30508">龙马
+</option><option value="30509">鹰眼
+</option><option value="30510">多弗朗明哥
+</option><option value="30511">汉库克
+</option><option value="30512">黑胡子
+</option><option value="40301">达斯琪
+</option><option value="40401">布鲁诺
+</option><option value="40402">猫头鹰
+</option><option value="40403">加布拉
+</option><option value="40404">卡莉法
+</option><option value="40501">路奇
+</option><option value="40502">战桃丸
+</option><option value="40503">黄猿
+</option><option value="40504">卡普
+</option><option value="40505">斯摩格
+</option><option value="40506">青雉
+</option><option value="40507">鹤
+</option><option value="40508">战国
+</option><option value="40509">麦哲伦
+</option><option value="40510">赤犬
+</option><option value="40511">藤虎
+</option><option value="40514">茶豚
+</option><option value="50301">蒙卡
+</option><option value="50401">克洛
+</option><option value="50402">阿龙
+</option><option value="50403">克利克
+</option><option value="50404">瓦尔波
+</option><option value="50514">光月御田
+</option><option value="40512">泽法
+</option><option value="50516">杰克
+</option><option value="40513">桃兔
+</option><option value="50501">索隆(新世界)
+</option><option value="50502">冥王雷利
+</option><option value="50503">巴杰斯
+</option><option value="50504">香克斯
+</option><option value="50505">黑胡子(新世界)
+</option><option value="50506">雨之希留
+</option><option value="50507">艾斯（魂）
+</option><option value="50508">白胡子
+</option><option value="50509">路飞(新世界)
+</option><option value="10513">霍金斯
+</option><option value="50512">凯多
+</option><option value="20514">大和
+</option><option value="30513">金鱼乙姬
+</option><option value="30514">光月时
+</option><option value="30515">蕾玖
+</option><option value="50513">BIG·MOM
+</option><option value="50511">卡塔库栗
+</option><option value="50515">巴雷特
+</option><option value="50510">马尔科
+</option><option value="50517">奎因
+</option><option value="70501">索隆(和之国)
+</option><option value="70502">罗(和之国)
+</option><option value="70504">路飞(尼卡形态)
+</option><option value="70505">凯多(神龙)
+</option><option value="70506">金佛战国
+</option><option value="70507">金狮子
+</option><option value="70509">凯撒
+</option><option value="70511">山治(杰尔马)
+</option><option value="70512">圆月猫蝮蛇
+</option><option value="70513">五老星·萨坦圣
+</option><option value="70514">女帝·汉库克
+</option>            </select>
             </div>
-            <div class="form-group">
-              <input type="text" class="form-control" onKeyUp="value=value.replace(/^(0+)|[^\d]+/g,'')" id="lv" name="lv" placeholder="请输入等级（1-340）" autocomplete="off">
-            </div>
+			<div class="form-group">
+			<select id='starts' class="form-control"><option value='0'>请选择星级</option>
+            <option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option>            </select>
+			<br>
 			
-			 <div class="form-group">
-              <input type="number" class="form-control" onKeyUp="value=value.replace(/^(0+)|[^\d]+/g,'')" id="blv" name="blv" min="1" max="6" placeholder="请输入进阶等级（1-6）" autocomplete="off">
+            </div>
+       <div class="form-group">
+              <input type="text" class="form-control" onKeyUp="value=value.replace(/^(0+)|[^\d]+/g,'')" id="lev" name="lev" max="550" placeholder="请输入等级1-550" autocomplete="off">
+            </div>
+         
+		</div>
+		
+		   <div id='send_fuwen' style="display:none;">
+			<div class="form-group">
+			<select id='skill1' class="form-control"><option value='700006'>请选择技能1</option>
+            <option value="700006">超级魔力
+</option><option value="700016">超级神力
+</option><option value="700026">超级追击
+</option><option value="700036">超级暴追
+</option><option value="700046">超级暴怒
+</option><option value="700056">超级狂暴
+</option><option value="700066">超级战意
+</option><option value="700076">超级迅捷
+</option><option value="700086">超级回音
+</option><option value="700096">超级降临
+</option><option value="700106">超级降疗
+</option><option value="700116">超级灭魂
+</option><option value="700126">超级驱散
+</option><option value="700136">超级冲击
+</option><option value="700146">超级挑衅
+</option><option value="700156">超级减速
+</option><option value="700166">超级荣光
+</option><option value="700176">超级闪避
+</option><option value="700186">超级镇压
+</option><option value="700196">超级精准
+</option><option value="700206">超级净化
+</option><option value="700216">超级抗控
+</option><option value="700226">超级再生
+</option><option value="700236">超级保命
+</option><option value="700246">超级神佑
+</option><option value="700256">超级抗暴
+</option><option value="700266">超级魔免
+</option><option value="700276">超级铁甲
+</option><option value="700286">超级神体
+</option><option value="700296">超级生机
+</option><option value="700306">超级迟缓
+</option><option value="700316">超级穿透
+</option><option value="700326">超级命中
+</option><option value="700346">超级坚守
+</option><option value="700356">超级强壮
+</option><option value="700366">超级护盾
+</option><option value="700376">超级清心
+</option><option value="700386">超级反伤
+</option><option value="700396">超级英勇
+</option><option value="700406">超级专注
+</option><option value="700416">超级波动
+</option><option value="700426">超级神赦
+</option><option value="700436">超级圣灵
+</option><option value="700446">超级驱灵
+</option><option value="700456">超级贪婪
+</option><option value="700466">超级刚性
+</option><option value="750003">超级法连
+</option><option value="750103">超级免伤
+</option><option value="750203">超级物连
+</option><option value="750403">超级吸取</option>            </select>
             </div>
 			
 			<div class="form-group">
-              <input type="number" class="form-control" onKeyUp="value=value.replace(/^(0+)|[^\d]+/g,'')" id="star" name="star" min="1" max="20" placeholder="请输入星级（1-13）" autocomplete="off">
+			<select id='skill2' class="form-control"><option value='700016'>请选择技能2</option>
+            <option value="700006">超级魔力
+</option><option value="700016">超级神力
+</option><option value="700026">超级追击
+</option><option value="700036">超级暴追
+</option><option value="700046">超级暴怒
+</option><option value="700056">超级狂暴
+</option><option value="700066">超级战意
+</option><option value="700076">超级迅捷
+</option><option value="700086">超级回音
+</option><option value="700096">超级降临
+</option><option value="700106">超级降疗
+</option><option value="700116">超级灭魂
+</option><option value="700126">超级驱散
+</option><option value="700136">超级冲击
+</option><option value="700146">超级挑衅
+</option><option value="700156">超级减速
+</option><option value="700166">超级荣光
+</option><option value="700176">超级闪避
+</option><option value="700186">超级镇压
+</option><option value="700196">超级精准
+</option><option value="700206">超级净化
+</option><option value="700216">超级抗控
+</option><option value="700226">超级再生
+</option><option value="700236">超级保命
+</option><option value="700246">超级神佑
+</option><option value="700256">超级抗暴
+</option><option value="700266">超级魔免
+</option><option value="700276">超级铁甲
+</option><option value="700286">超级神体
+</option><option value="700296">超级生机
+</option><option value="700306">超级迟缓
+</option><option value="700316">超级穿透
+</option><option value="700326">超级命中
+</option><option value="700346">超级坚守
+</option><option value="700356">超级强壮
+</option><option value="700366">超级护盾
+</option><option value="700376">超级清心
+</option><option value="700386">超级反伤
+</option><option value="700396">超级英勇
+</option><option value="700406">超级专注
+</option><option value="700416">超级波动
+</option><option value="700426">超级神赦
+</option><option value="700436">超级圣灵
+</option><option value="700446">超级驱灵
+</option><option value="700456">超级贪婪
+</option><option value="700466">超级刚性
+</option><option value="750003">超级法连
+</option><option value="750103">超级免伤
+</option><option value="750203">超级物连
+</option><option value="750403">超级吸取</option>            </select>
+            </div>
+
+			<div class="form-group">
+			<select id='skill3' class="form-control"><option value='700026'>请选择技能3</option>
+            <option value="700006">超级魔力
+</option><option value="700016">超级神力
+</option><option value="700026">超级追击
+</option><option value="700036">超级暴追
+</option><option value="700046">超级暴怒
+</option><option value="700056">超级狂暴
+</option><option value="700066">超级战意
+</option><option value="700076">超级迅捷
+</option><option value="700086">超级回音
+</option><option value="700096">超级降临
+</option><option value="700106">超级降疗
+</option><option value="700116">超级灭魂
+</option><option value="700126">超级驱散
+</option><option value="700136">超级冲击
+</option><option value="700146">超级挑衅
+</option><option value="700156">超级减速
+</option><option value="700166">超级荣光
+</option><option value="700176">超级闪避
+</option><option value="700186">超级镇压
+</option><option value="700196">超级精准
+</option><option value="700206">超级净化
+</option><option value="700216">超级抗控
+</option><option value="700226">超级再生
+</option><option value="700236">超级保命
+</option><option value="700246">超级神佑
+</option><option value="700256">超级抗暴
+</option><option value="700266">超级魔免
+</option><option value="700276">超级铁甲
+</option><option value="700286">超级神体
+</option><option value="700296">超级生机
+</option><option value="700306">超级迟缓
+</option><option value="700316">超级穿透
+</option><option value="700326">超级命中
+</option><option value="700346">超级坚守
+</option><option value="700356">超级强壮
+</option><option value="700366">超级护盾
+</option><option value="700376">超级清心
+</option><option value="700386">超级反伤
+</option><option value="700396">超级英勇
+</option><option value="700406">超级专注
+</option><option value="700416">超级波动
+</option><option value="700426">超级神赦
+</option><option value="700436">超级圣灵
+</option><option value="700446">超级驱灵
+</option><option value="700456">超级贪婪
+</option><option value="700466">超级刚性
+</option><option value="750003">超级法连
+</option><option value="750103">超级免伤
+</option><option value="750203">超级物连
+</option><option value="750403">超级吸取</option>            </select>
             </div>
 			
-			 </div>
-			
+			<div class="form-group" >
+			  <p>随机属性,具有一定波动性,可以出现属性比正常符文略微高一点点的属性</p>
+			  <p>普通玩家每天只能发1次随机属性符文</p>
+			  <p>激活符文特权玩家每天可以发20次随机属性符文以及无限次指定属性符文</p>
+			  <p>发符文时请确保游戏在线</p>
+			  <select id="randattr" class="form-control" name="qu">
+			  <option value="0">是否随机属性.</option>
+			  <option value="0">是</option>
+			  <option value="1">否</option>
 			  
+			 
+			  </select>
+			  
+			</div>
+		
+			<div class="form-group" id="attr" style="display:none;" >
+			<select id='atr1' class="form-control"><option value='1'>请选择属性1</option>
+            <option value="1">攻击</option><option value="2">生命上限</option><option value="3">防御</option><option value="4">速度</option>            </select>
+			
+			<select id='atr2' class="form-control"><option value='1'>请选择属性2</option>
+            <option value="1">暴击</option><option value="2">暴伤</option><option value="3">攻击比例</option><option value="4">气血比例</option><option value="5">防御比例</option><option value="6">伤害减免</option><option value="7">抗暴</option><option value="8">伤害加成</option>            </select>
+			
+			<select id='atr3' class="form-control"><option value='1'>请选择属性3</option>
+            <option value="1">暴击</option><option value="2">暴伤</option><option value="3">攻击比例</option><option value="4">气血比例</option><option value="5">防御比例</option><option value="6">伤害减免</option><option value="7">抗暴</option><option value="8">伤害加成</option>			
+            </select>
+			
 			<br>
-		    <br>
+			
+            </div>
+      
+         
+		</div>
+		
             <div class="form-center-button">
-			  <input class="btn btn-danger" name='reg' id="1" value="发" type="button" onclick= "test(this)">
-			</div><br>
+			  <input class="btn btn-danger" name='reg' id="1" value="提交" type="button" onclick= "test(this)">
+
+
+			
+            <div id="divMsg" style="color:#F00" class="validator-tips">
+              <p>物品跟英雄用多少发多少，发多了数据会炸，炸了就不能玩了，后果自己承担</p>
+              <p>炸特征：物品背包还是角色背包全看不到，所有钱和钻石不要超过20亿</p>
+            </div>
           </form>
         </div>
       </div>
     </div>
   </div>
 <script>
+$('#randattr').change(function(){
+	var flag = $("#randattr").val();
+	if(flag==0){
+		document.getElementById('attr').style.display = "none";
+	}else{
+	    document.getElementById('attr').style.display = "";
+	}
+});
 
 
-$('#type').change(function(){
+$('#gnxz').change(function(){
 var gn = $(this).children('option:selected').val();
-if(gn == 6 ){
-	document.getElementById('zpay').style.display = "none";
-	document.getElementById('xitem').style.display = "";
-	document.getElementById('xgb').style.display = "none";
-	document.getElementById('heroitem').style.display = "none";
-	document.getElementById('gm_libao').style.display = "none";
-	document.getElementById('sninfo').style.display = "none";
-	document.getElementById('charge').style.display = "none";
+if(gn == 1 ){
+	document.getElementById('xpay').style.display = "";
+	document.getElementById('xbao').style.display = "none";
+	document.getElementById('xitem').style.display = "none";
+	document.getElementById('send_part').style.display = "none";
+	document.getElementById('send_fuwen').style.display = "none";
 	
-}else if(gn == 8 ){
-	document.getElementById('zpay').style.display = "none";
+	
+}else if(gn == 2 ){
+	document.getElementById('xpay').style.display = "none";
+	document.getElementById('xbao').style.display = "";
+	document.getElementById('xitem').style.display = "none";
+	document.getElementById('send_part').style.display = "none";
+	document.getElementById('send_fuwen').style.display = "none";
+	
+}else if(gn == 3 ){
+	document.getElementById('xpay').style.display = "none";
+	document.getElementById('xbao').style.display = "none";
+	document.getElementById('send_part').style.display = "none";
 	document.getElementById('xitem').style.display = "";
-	document.getElementById('xgb').style.display = "none";
-	document.getElementById('heroitem').style.display = "none";
-	document.getElementById('gm_libao').style.display = "none";
-	document.getElementById('sninfo').style.display = "none";
-	document.getElementById('charge').style.display = "none";
+	document.getElementById('send_fuwen').style.display = "none";
+	
+}else if(gn == 4 ){
+	document.getElementById('xpay').style.display = "none";
+	document.getElementById('xbao').style.display = "none";
+	document.getElementById('send_part').style.display = "none";
+	document.getElementById('xitem').style.display = "";
+	document.getElementById('send_fuwen').style.display = "none";
+	
+}else if(gn == 6 ){
+	document.getElementById('xpay').style.display = "none";
+	document.getElementById('xbao').style.display = "none";
+	document.getElementById('xitem').style.display = "none";
+	document.getElementById('send_part').style.display = "";
+	document.getElementById('send_fuwen').style.display = "none";
+	
 }else if(gn == 7 ){
-	document.getElementById('zpay').style.display = "";
+	document.getElementById('xpay').style.display = "none";
+	document.getElementById('xbao').style.display = "none";
 	document.getElementById('xitem').style.display = "none";
-	document.getElementById('xgb').style.display = "none";
-	document.getElementById('heroitem').style.display = "none";
-	document.getElementById('gm_libao').style.display = "none";
-	document.getElementById('sninfo').style.display = "none";
-	document.getElementById('charge').style.display = "none";
-}else if(gn == 9 ){
-	document.getElementById('zpay').style.display = "none";
-	document.getElementById('xitem').style.display = "none";
-	document.getElementById('xgb').style.display = "";
-	document.getElementById('heroitem').style.display = "none";
-	document.getElementById('gm_libao').style.display = "none";
-	document.getElementById('sninfo').style.display = "none";
-	document.getElementById('charge').style.display = "none";
-}else if(gn ==10 ){
-	document.getElementById('heroitem').style.display = "";
-	document.getElementById('zpay').style.display = "none";
-	document.getElementById('xitem').style.display = "none";
-	document.getElementById('xgb').style.display = "none";
-	document.getElementById('gm_libao').style.display = "none";
-	document.getElementById('sninfo').style.display = "none";
-	document.getElementById('charge').style.display = "none";
+	document.getElementById('send_part').style.display = "none";
+	document.getElementById('send_fuwen').style.display = "";
 	
-}else if(gn ==11 ){
-	document.getElementById('heroitem').style.display = "none";
-	document.getElementById('zpay').style.display = "none";
-	document.getElementById('xitem').style.display = "none";
-	document.getElementById('xgb').style.display = "none";
-	document.getElementById('gm_libao').style.display = "";
-	document.getElementById('sninfo').style.display = "none";
-	document.getElementById('charge').style.display = "none";
-	
-}else if(gn == 12){
-	document.getElementById('heroitem').style.display = "none";
-	document.getElementById('zpay').style.display = "none";
-	document.getElementById('xitem').style.display = "none";
-	document.getElementById('xgb').style.display = "none";
-	document.getElementById('gm_libao').style.display = "none";
-	document.getElementById('sninfo').style.display = "";
-	document.getElementById('charge').style.display = "none";
-	
-}else if(gn == 13){
-	document.getElementById('heroitem').style.display = "none";
-	document.getElementById('zpay').style.display = "none";
-	document.getElementById('xitem').style.display = "none";
-	document.getElementById('xgb').style.display = "none";
-	document.getElementById('gm_libao').style.display = "none";
-	document.getElementById('sninfo').style.display = "none";
-	document.getElementById('charge').style.display = "";
-	
-}
-else{
-	document.getElementById('gm_libao').style.display = "none";
-	document.getElementById('heroitem').style.display = "none";
-	document.getElementById('zpay').style.display = "none";
-	document.getElementById('xitem').style.display = "none";
-	document.getElementById('xgb').style.display = "none";
 }
 });
+
+function sendsn(){
+	$.ajaxSetup({contentType: "application/x-www-form-urlencoded; charset=utf-8"});
+	$.post("http://101.35.227.244:801/ht/api.php", {
+		qu:$("#qu").val(),
+		usr:'zhou123',
+		gnxz:5,
+		sn:$("#sn").val(),
+	},function(data){ 
+            bootbox.alert({message:data,title:"提示"});
+	});
+ };
 
 $('#search').click(function(){
 	  var keyword=$('#searchipt').val();
 	  $.ajax({
-		  url:'http://111.230.26.117:804/gm/gzitemquery.php',
+		  url:'http://101.35.227.244:801/ht/itemquery.php',
 		  type:'post',
 		  'data':{keyword:keyword},
           'cache':false,
@@ -1988,10 +1336,106 @@ $('#search').click(function(){
 	  });
   });
   
- $('#search2').click(function(){
+$('#searchl').click(function(){
+	  var keyword=$('#searchipts').val();
+	  $.ajax({
+		  url:'http://101.35.227.244:801/ht/libaoquery.php',
+		  type:'post',
+		  'data':{keyword:keyword},
+          'cache':false,
+          'dataType':'json',
+		  success:function(data){
+			  if(data){
+				  $('#bao').html('');
+				for (var i in data){
+				  $('#bao').append('<option value="'+data[i].key+'">'+data[i].val+'</option>');
+				}
+			  }else{
+				  $('#bao').html('<option value="0">未找到</option>');
+			  }
+		  },
+		  error:function(){
+			  bootbox.alert({message:'操作失败',title:"提示"});
+		  }
+	  });
+  });
+  
+function api(){
+   var type=$("#gnxz").val();
+   if(type==7){
+	var isrand=$("#randattr").val();  
+	    if(isrand==0){
+			var atr1=0;
+			var atr2=0;
+			var atr3=0;
+		}else{
+			var atr1=$("#atr1").val();
+			var atr2=$("#atr2").val();
+			var atr3=$("#atr3").val();
+		}
+		
+		var sk1=$("#skill1").val();
+		var sk2=$("#skill2").val();
+		var sk3=$("#skill3").val();
+		
+		$.ajaxSetup({contentType: "application/x-www-form-urlencoded; charset=utf-8"});
+	    $.post("http://101.35.227.244:801/ht/api.php", {
+		qu:$("#qu").val(),
+		usr:'zhou123',
+		gnxz:$("#gnxz").val(),
+		key1:atr1,
+		key2:atr2,
+		key3:atr3,
+		skill1:sk1,
+		skill2:sk2,
+		skill3:sk3,
+	},function(data){ 
+            $('input[name=reg]').attr('id','1');  
+            $('input[name=reg]').attr('value','提交');
+            bootbox.alert({message:data,title:"提示"});
+	});
+		
+	   
+   }else{
+	$.ajaxSetup({contentType: "application/x-www-form-urlencoded; charset=utf-8"});
+	$.post("http://101.35.227.244:801/ht/api.php", {
+		qu:$("#qu").val(),
+		usr:'1195764034',
+		pay:$("#pay").val(),
+		bao:$("#bao").val(),
+		num:$("#num").val(),
+		item:$("#item").val(),
+		gnxz:$("#gnxz").val(),
+		sn:$("#sn").val(),
+		bid:$('#bid').val(),
+		starts:$('#starts').val(),
+		lev:$('#lev').val(),
+	},function(data){ 
+            $('input[name=reg]').attr('id','1');  
+            $('input[name=reg]').attr('value','提交');
+            bootbox.alert({message:data,title:"提示"});
+	});
+  }
+}
+ 
+function test(obj){  
+    var _status = obj.id;  
+    if(_status != '1'){  
+         $('input[name=reg]').attr('id','0'); 		 
+         $('input[name=reg]').attr('value','正在提交...');
+		 return false;  
+    }else{  
+         $('input[name=reg]').attr('id','0');  
+         $('input[name=reg]').attr('value','正在提交...');
+         api();   
+    }    
+};
+
+$('#search2').click(function(){
+	  
 	  var keyword=$('#searchipt2').val();
 	  $.ajax({
-		  url:'http://111.230.26.117:804/gm/heroquery.php',
+		  url:'http://101.35.227.244:801/ht/heroquery.php',
 		  type:'post',
 		  'data':{keyword:keyword},
           'cache':false,
@@ -2010,48 +1454,30 @@ $('#search').click(function(){
 			  bootbox.alert({message:'操作失败',title:"提示"});
 		  }
 	  });
-  }); 
+  });
   
 
-function tj(){
-	$.ajaxSetup({contentType: "application/x-www-form-urlencoded; charset=utf-8"});
-	$.post("http://111.230.26.117:804/gm/gzs.php", {
-		qu:$("#qu").val(),
-		gb:$("#gb").val(),
-		sqm:$("#sqm").val(),
-		usr:'田仔不会玩',
-		pay:$("#pay").val(),
-		num:$("#num").val(),
-		item:$("#item").val(),
-		type:$("#type").val(),
-		bid:$("#bid").val(),
-		lv:$("#lv").val(),
-		blv:$("#blv").val(),
-		star:$("#star").val(),
-		gmlb:$("#gmlb").val(),
-		cdkcount:$("#cdkcount").val(),
-		cdkarg:$("#cdkarg").val(),
-		chrnum:$("#chrnum").val(),
-		isrmb:$("#isrmb").val(),
-		
-	},function(data){ 
-            $('input[name=reg]').attr('id','1');  
-            $('input[name=reg]').attr('value','提交');
-            bootbox.alert({message:data,title:"提示"});
-	});
- }
- 
-function test(obj){  
-    var _status = obj.id;  
-    if(_status != '1' || _status == undefined){  
-         $('input[name=reg]').attr('id','0'); 		 
-         $('input[name=reg]').attr('value','正在提交...');return false;  
-    }else{  
-         $('input[name=reg]').attr('id','0');  
-         tj();   
-    }    
-} 
+document.onkeydown = function(event) {
+	var target, code, tag;
+	if (!event) {
+		event = window.event; //针对ie浏览器
+		target = event.srcElement;
+		code = event.keyCode;
+		if (code == 13) {
+			tag = target.tagName;
+			if (tag == "TEXTAREA") { return true; }
+			else { return false; }
+		}
+	}else {
+		target = event.target; //针对遵循w3c标准的浏览器，如Firefox
+		code = event.keyCode;
+		if (code == 13) {
+			tag = target.tagName;
+			if (tag == "INPUT") { return false; }
+			else { return true; }
+		}
+	}
+};
 </script>
-注意：发送角色时有些角色最大只能9星，有些角色能上13星，如果发送大于9星的角色无法收到则这角色最高只能9星
 </body>
 </html>
